@@ -1,14 +1,17 @@
-import { Work_Sans, Geist_Mono } from "next/font/google";
+import { Work_Sans, JetBrains_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Body font
+const workSans = Work_Sans({
   subsets: ["latin"],
+  variable: "--font-sans",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Headings font
+const dmSans = DM_Sans({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-heading",
 });
 
 export const metadata = {
@@ -18,12 +21,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-      <html lang="en">
-          <body
-              className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
-              {children}
-          </body>
-      </html>
+    <html lang="en">
+      <body className={`${workSans.variable} ${dmSans.variable} antialiased`}>{children}</body>
+    </html>
   );
 }
