@@ -17,23 +17,23 @@ const fragmentShader = `
 precision highp float;
 
 uniform float uTime;
-uniform vec3 uResolution;
-uniform vec2 uFocal;
-uniform vec2 uRotation;
+uniform vec3  uResolution;
+uniform vec2  uFocal;
+uniform vec2  uRotation;
 uniform float uStarSpeed;
 uniform float uDensity;
 uniform float uHueShift;
 uniform float uSpeed;
-uniform vec2 uMouse;
+uniform vec2  uMouse;
 uniform float uGlowIntensity;
 uniform float uSaturation;
-uniform bool uMouseRepulsion;
+uniform float uMouseRepulsion;    // 0.0 or 1.0 (use float instead of bool)
 uniform float uTwinkleIntensity;
 uniform float uRotationSpeed;
 uniform float uRepulsionStrength;
-uniform float uMouseActiveFactor;
+uniform float uMouseActiveFactor; // 0..1
 uniform float uAutoCenterRepulsion;
-uniform bool uTransparent;
+uniform float uTransparent;       // 0.0 or 1.0 (use float instead of bool)
 
 varying vec2 vUv;
 
@@ -113,7 +113,7 @@ void main(){
     float centerDist=length(uv-centerUV);
     vec2 repulsion=normalize(uv-centerUV)*(uAutoCenterRepulsion/(centerDist+0.1));
     uv+=repulsion*0.05;
-  }else if(uMouseRepulsion){
+  }else if(uMouseRepulsion > 0.5){
     vec2 mousePosUV=(uMouse*uResolution.xy - focalPx)/uResolution.y;
     float mouseDist=length(uv-mousePosUV);
     vec2 repulsion=normalize(uv-mousePosUV)*(uRepulsionStrength/(mouseDist+0.1));
@@ -137,7 +137,7 @@ void main(){
     col+=StarLayer(uv*scale + i*453.32)*fade;
   }
 
-  if(uTransparent){
+  if(uTransparent > 0.5){
     float alpha=length(col);
     alpha=smoothstep(0.0,0.3,alpha);
     alpha=min(alpha,1.0);
@@ -165,11 +165,13 @@ export default function Galaxy({
   rotationSpeed = 0.1,
   autoCenterRepulsion = 0,
   transparent = true,
-  // NEW: adaptive rendering controls
-  targetPixels = 1.8e6,   // aim to render ~1.8 megapixels at most
+
+  // Adaptive rendering
+  targetPixels = 1.2e6,  
   minDpr = 1.0,
-  maxDpr = 1.75,
-  minScale = 0.65,        // don't go below 65% internal resolution
+  maxDpr = 1.25,
+  minScale = 0.65,      
+
   ...rest
 }) {
   const ctnDom = useRef(null);
@@ -185,8 +187,16 @@ export default function Galaxy({
     const renderer = new Renderer({
       alpha: transparent,
       premultipliedAlpha: false,
+      antialias: false,
+      depth: false,
+      stencil: false,
+      powerPreference: "high-performance",
+      desynchronized: true,
     });
+
     const gl = renderer.gl;
+    gl.disable(gl.DEPTH_TEST);
+    gl.disable(gl.STENCIL_TEST);
 
     if (transparent) {
       gl.enable(gl.BLEND);
@@ -196,13 +206,22 @@ export default function Galaxy({
       gl.clearColor(0, 0, 0, 1);
     }
 
-    // We'll set DPR and internal size adaptively in doResize()
     renderer.dpr = 1;
 
     let program;
     let animateId = 0;
     let resizeRaf = 0;
     let lastCSSW = 0, lastCSSH = 0;
+
+    // cached rect for cheap pointer math
+    let rectLeft = 0, rectTop = 0, rectW = 1, rectH = 1;
+    function updateRect() {
+      const r = ctn.getBoundingClientRect();
+      rectLeft = r.left;
+      rectTop = r.top;
+      rectW = Math.max(1, r.width);
+      rectH = Math.max(1, r.height);
+    }
 
     const geometry = new Triangle(gl);
     program = new Program(gl, {
@@ -220,13 +239,13 @@ export default function Galaxy({
         uMouse: { value: new Float32Array([smoothMousePos.current.x, smoothMousePos.current.y]) },
         uGlowIntensity: { value: glowIntensity },
         uSaturation: { value: saturation },
-        uMouseRepulsion: { value: mouseRepulsion },
+        uMouseRepulsion: { value: mouseRepulsion ? 1.0 : 0.0 },
         uTwinkleIntensity: { value: twinkleIntensity },
         uRotationSpeed: { value: rotationSpeed },
         uRepulsionStrength: { value: repulsionStrength },
         uMouseActiveFactor: { value: 0.0 },
         uAutoCenterRepulsion: { value: autoCenterRepulsion },
-        uTransparent: { value: transparent },
+        uTransparent: { value: transparent ? 1.0 : 0.0 },
       },
     });
 
@@ -240,26 +259,19 @@ export default function Galaxy({
       );
     }
 
-    // Compute adaptive DPR and internal render scale for big canvases
+    // Compute adaptive DPR and internal render scale
     function computeAdaptive(w, h) {
-      // targetPixels is the *internal buffer* pixel budget we aim for (after DPR & scale)
       const deviceDpr = window.devicePixelRatio || 1;
-      // start with full-size renderScale = 1 and full DPR, then clamp down
       let renderScale = 1.0;
 
-      // If CSS pixels exceed our budget, reduce internal resolution smoothly
       const cssPixels = w * h;
       if (cssPixels * deviceDpr * deviceDpr > targetPixels) {
-        // scale ~ sqrt(target / (w*h*dpr^2)) keeps aspect and balances both axes
         renderScale = Math.max(
           minScale,
           Math.min(1.0, Math.sqrt(targetPixels / (cssPixels * deviceDpr * deviceDpr)))
         );
       }
-
-      // Also clamp DPR so super-retina doesn’t explode the buffer
       const desiredDpr = Math.min(maxDpr, Math.max(minDpr, deviceDpr));
-
       return { desiredDpr, renderScale };
     }
 
@@ -273,33 +285,30 @@ export default function Galaxy({
       const { desiredDpr, renderScale } = computeAdaptive(w, h);
       renderer.dpr = desiredDpr;
 
-      // Internal buffer size (scaled), but keep CSS size at full container
       const internalW = Math.max(1, Math.floor(w * renderScale));
       const internalH = Math.max(1, Math.floor(h * renderScale));
       renderer.setSize(internalW, internalH);
 
-      // Stretch to container size (so it still visually fills)
+      // Stretch canvas to fill CSS size
       gl.canvas.style.width = `${w}px`;
       gl.canvas.style.height = `${h}px`;
 
       applyResolution();
-
-      // Gentle LOD knobs when buffer is very large
-      const bufferPixels = gl.canvas.width * gl.canvas.height;
-      const big = bufferPixels > targetPixels * 0.9;
-      program.uniforms.uDensity.value = density * (big ? 0.85 : 1.0);
-      program.uniforms.uGlowIntensity.value = glowIntensity * (big ? 0.9 : 1.0);
-      program.uniforms.uTwinkleIntensity.value = twinkleIntensity * (big ? 0.85 : 1.0);
     }
 
     function queueResize() {
       if (resizeRaf) cancelAnimationFrame(resizeRaf);
-      resizeRaf = requestAnimationFrame(doResize);
+      resizeRaf = requestAnimationFrame(() => {
+        doResize();
+        updateRect();
+      });
     }
 
     const ro = new ResizeObserver(queueResize);
     ro.observe(ctn);
     queueResize();
+    window.addEventListener("scroll", updateRect, { passive: true });
+    window.addEventListener("resize", updateRect, { passive: true });
 
     function update(t) {
       animateId = requestAnimationFrame(update);
@@ -310,8 +319,8 @@ export default function Galaxy({
         program.uniforms.uStarSpeed.value = (tSec * starSpeed) / 10.0;
       }
 
-      // Smooth mouse
-      const lerp = 0.05;
+      // Smooth mouse for stable motion
+      const lerp = 0.12; // snappier than 0.05
       smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerp;
       smoothMousePos.current.y += (targetMousePos.current.y - smoothMousePos.current.y) * lerp;
       smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * lerp;
@@ -320,33 +329,44 @@ export default function Galaxy({
       program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
       program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
 
+      // Dynamic LOD during interaction
+      const active = smoothMouseActive.current; // 0..1
+      const lod = 1.0 - 0.25 * active; // 1.0 (idle) -> 0.75 (active)
+      program.uniforms.uDensity.value = density * lod;
+      program.uniforms.uGlowIntensity.value = glowIntensity * (0.9 + 0.1 * lod);
+      program.uniforms.uTwinkleIntensity.value = twinkleIntensity * lod;
+
       renderer.render({ scene: mesh });
     }
     animateId = requestAnimationFrame(update);
     ctn.appendChild(gl.canvas);
 
-    function handleMouseMove(e) {
-      const rect = ctn.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / Math.max(1, rect.width);
-      const y = 1.0 - (e.clientY - rect.top) / Math.max(1, rect.height);
-      targetMousePos.current = { x, y };
+    function handlePointerMove(e) {
+      const x = (e.clientX - rectLeft) / rectW;
+      const y = 1.0 - (e.clientY - rectTop) / rectH;
+      // write raw numbers to avoid allocations
+      targetMousePos.current.x = x;
+      targetMousePos.current.y = y;
       targetMouseActive.current = 1.0;
     }
-    function handleMouseLeave() {
+    function handlePointerLeave() {
       targetMouseActive.current = 0.0;
     }
+
     if (mouseInteraction) {
-      ctn.addEventListener("mousemove", handleMouseMove);
-      ctn.addEventListener("mouseleave", handleMouseLeave);
+      window.addEventListener("pointermove", handlePointerMove, { passive: true });
+      window.addEventListener("pointerleave", handlePointerLeave, { passive: true });
     }
 
     return () => {
       cancelAnimationFrame(animateId);
       if (resizeRaf) cancelAnimationFrame(resizeRaf);
       ro.disconnect();
+      window.removeEventListener("scroll", updateRect);
+      window.removeEventListener("resize", updateRect);
       if (mouseInteraction) {
-        ctn.removeEventListener("mousemove", handleMouseMove);
-        ctn.removeEventListener("mouseleave", handleMouseLeave);
+        window.removeEventListener("pointermove", handlePointerMove);
+        window.removeEventListener("pointerleave", handlePointerLeave);
       }
       if (gl && gl.canvas && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);

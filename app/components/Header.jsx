@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header className="relative h-[100vh] overflow-hidden">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <Galaxy  transparent={false} />
+        <Galaxy transparent={false} density={2.0} glowIntensity={0.5}/>
       </div>
 
       <div className="absolute top-0 inset-x-0 z-20">
