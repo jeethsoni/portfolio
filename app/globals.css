@@ -12,6 +12,17 @@
   75% { transform: rotate(-8deg) scale(1.05); }
 }
 
+@keyframes wave {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(14deg); }
+  20%  { transform: rotate(-8deg); }
+  30%  { transform: rotate(14deg); }
+  40%  { transform: rotate(-4deg); }
+  50%  { transform: rotate(10deg); }
+  60%  { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
 /* Map your custom fonts to Tailwind tokens */
 @theme inline {
   --color-background: var(--background);
@@ -20,8 +31,10 @@
   --font-sans: var(--font-sans); /* Work Sans */
   --font-heading: var(--font-heading); /* DM Sans */
   --font-mono: var(--font-mono); /* JetBrains Mono */
+  --font-flip: var(--font-sora); /* Sora for FlipWords */
 
   --animate-handshake: handshake 0.5s ease-in-out 2;
+  --animate-wave: wave 1.5s ease-in-out infinite;
 }
 
 body {

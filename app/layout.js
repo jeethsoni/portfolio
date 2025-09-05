@@ -1,4 +1,4 @@
-import { Work_Sans, JetBrains_Mono, DM_Sans } from "next/font/google";
+import { Work_Sans, DM_Sans, Sora, Inter } from "next/font/google";
 import "./globals.css";
 
 // Body font
@@ -14,15 +14,19 @@ const dmSans = DM_Sans({
   variable: "--font-heading",
 });
 
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+
 export const metadata = {
   title: "Portfolio",
   description: "Jeet Soni's Portfolio",
 };
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${workSans.variable} ${dmSans.variable} antialiased`}>{children}</body>
+      <body className={`${workSans.variable} ${dmSans.variable} ${inter.variable} antialiased`}>{children}</body>
     </html>
   );
 }

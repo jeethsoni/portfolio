@@ -66,7 +66,7 @@ const Navbar = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 1 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              className="flex md:hidden flex-col gap-3 fixed top-0 bg-blue-500/60 right-0 py-15 px-2 w-54 z-40 rounded-bl-xl shadow-lg"
+              className="flex md:hidden flex-col gap-3 fixed top-0 bg-blue-800 right-0 py-15 px-2 w-54 z-40 rounded-bl-xl shadow-lg"
             >
         
               <div className="flex items-center absolute right-6 top-6 justify-between" onClick={closeSideMenu}>
