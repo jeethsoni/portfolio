@@ -23,6 +23,29 @@
   100% { transform: rotate(0deg); }
 }
 
+@keyframes aurora {
+    0% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
+    }
+    25% {
+      background-position: 50% 100%;
+      transform: rotate(5deg) scale(1.1);
+    }
+    50% {
+      background-position: 100% 50%;
+      transform: rotate(-3deg) scale(0.95);
+    }
+    75% {
+      background-position: 50% 0%;
+      transform: rotate(3deg) scale(1.05);
+    }
+    100% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
+    }
+  }
+
 /* Map your custom fonts to Tailwind tokens */
 @theme inline {
   --color-background: var(--background);
@@ -35,6 +58,7 @@
 
   --animate-handshake: handshake 0.5s ease-in-out 2;
   --animate-wave: wave 1.5s ease-in-out infinite;
+  --animate-aurora: aurora 15s ease-in-out infinite alternate;
 }
 
 body {
