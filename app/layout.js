@@ -1,4 +1,4 @@
-import { Work_Sans, DM_Sans, Sora, Inter } from "next/font/google";
+import { Work_Sans, DM_Sans, Sora, Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
 // Body font
@@ -22,11 +22,17 @@ export const metadata = {
   description: "Jeet Soni's Portfolio",
 };
 
+export const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-bebas",
+});
+
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${workSans.variable} ${dmSans.variable} ${inter.variable} antialiased`}>{children}</body>
+      <body className={`${workSans.variable} ${dmSans.variable} ${inter.variable} ${bebasNeue.variable} antialiased`}>{children}</body>
     </html>
   );
 }
