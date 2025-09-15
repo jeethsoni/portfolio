@@ -49,13 +49,13 @@ const Navbar = () => {
 
         {/* Desktop socials (right) */}
         <div className="hidden lg:flex items-center gap-4">
-          <a href="https://www.instagram.com/_jeetsoni" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-500 hover:text-emerald-500 transition-colors">
+          <a href="https://www.instagram.com/_jeetsoni" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-500 hover:text-gray-50 transition-colors">
             <FaInstagram size={26} />
           </a>
-          <a href="https://www.linkedin.com/in/jeet-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-500 hover:text-emerald-500 transition-colors">
+          <a href="https://www.linkedin.com/in/jeet-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-500 hover:text-gray-50 transition-colors">
             <FaLinkedin size={26} />
           </a>
-          <a href="https://www.github.com/jeethsoni" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-500 hover:text-emerald-500 transition-colors">
+          <a href="https://www.github.com/jeethsoni" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-500 hover:text-gray-50 transition-colors">
             <FaGithub size={26} />
           </a>
         </div>
