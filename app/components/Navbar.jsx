@@ -40,9 +40,9 @@ const Navbar = () => {
         {/* Center desktop nav */}
         <ul className="hidden lg:flex mx-auto space-x-8 text-white font-medium bg-white/10 px-1.5 py-1 rounded-full border border-white/20 backdrop-blur-md">
           <li className="hover:rounded-full hover:bg-emerald-500 px-3 py-1 hover:transition-colors duration-300 cursor-pointer"><a href="#home">Home</a></li>
+          <li className="hover:rounded-full hover:bg-emerald-500 px-3 py-1 hover:transition-colors duration-300 cursor-pointer"><a href="#about">About</a></li>
           <li className="hover:rounded-full hover:bg-emerald-500 px-3 py-1 hover:transition-colors duration-300 cursor-pointer"><a href="#work">Work</a></li>
           <li className="hover:rounded-full hover:bg-emerald-500 px-3 py-1 hover:transition-colors duration-300 cursor-pointer"><a href="#projects">Projects</a></li>
-          <li className="hover:rounded-full hover:bg-emerald-500 px-3 py-1 hover:transition-colors duration-300 cursor-pointer"><a href="#about">About</a></li>
           <li className="hover:rounded-full hover:bg-emerald-500 px-3 py-1 hover:transition-colors duration-300 cursor-pointer"><a href="#blog">Blog</a></li>
           <li className="hover:rounded-full hover:bg-emerald-500 px-3 py-1 hover:transition-colors duration-300 cursor-pointer"><a href="#contact">Contact</a></li>
         </ul>
