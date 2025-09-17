@@ -16,9 +16,6 @@ export default function Header() {
   return (
     <header className="relative min-h-screen overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <Galaxy transparent={false} density={1.0} glowIntensity={0.3} />
-      </div>
 
       {/* Navbar */}
       <div className="absolute top-0 inset-x-0 z-[100]">
