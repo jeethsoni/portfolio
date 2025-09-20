@@ -5,8 +5,10 @@ import Header from "./components/Header";
 export default function Home() {
   return (
     <>
-      <Header/>
-      <About />
+    <div className="mb-35">
+      <Header />
+    </div>
+    <About />
     </>
   );
 }
