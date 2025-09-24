@@ -6,7 +6,7 @@ export default function Marquee({
   pauseOnHover = false,
   children,
   vertical = false,
-  repeat = 4,
+  repeat = 50,
   ...props
 }) {
   return (
@@ -14,7 +14,7 @@ export default function Marquee({
       {...props}
       className={cn(
         // removed p-2; keep CSS vars (you can override --gap per instance)
-        "group flex overflow-hidden [--duration:40s] [--gap:0.25rem] [gap:var(--gap)]",
+        "group flex w-full overflow-hidden [--duration:40s] [--gap:0.25rem] [gap:var(--gap)]",
         vertical ? "flex-col" : "flex-row",
         className
       )}
@@ -24,7 +24,7 @@ export default function Marquee({
           key={i}
           className={cn(
             // make items close together and vertically centered
-            "flex shrink-0 items-center justify-start [gap:var(--gap)]",
+            "flex items-center [gap:var(--gap)]",
             vertical ? "animate-marquee-vertical flex-col" : "animate-marquee flex-row",
             pauseOnHover && "group-hover:[animation-play-state:paused]",
             reverse && "[animation-direction:reverse]"
