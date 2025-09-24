@@ -20,7 +20,7 @@ export default function Header() {
       </div>
 
       {/* Centered frame (same rails as About) */}
-      <div className="relative z-20 container mx-auto px-6 md:px-12 lg:px-20 py-12 md:py-20 mt-10">
+      <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-20 mt-10">
         {/* 6-col grid; equal rails; responsive ordering */}
         <div className="grid grid-cols-6 gap-4 xl:gap-12 items-start">
           {/* PROFILE IMAGE — mobile #1; desktop right column row 1 */}
@@ -97,11 +97,11 @@ export default function Header() {
           </div>
 
           {/* GLOBE INFO (paragraphs/chips) — mobile #4; desktop left column row 2 */}
-          <div className="col-span-6 order-4 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-2 space-y-3 max-w-[700px] text-center lg:mt-14 lg:text-left">
+          <div className="col-span-6 order-4 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-2 space-y-3 mx-auto text-center lg:mt-14 lg:text-left lg:items-start items-center flex flex-col">
             <p className="text-lg sm:text-2xl leading-relaxed font-bold text-green-600 drop-shadow-[0_0_4px_rgba(34,197,94,0.5)] font-bebas">
               The next wave of innovation shouldn’t leave anyone behind.
             </p>
-            <p className="text-md sm:text-lg leading-relaxed text-stone-300 max-w-[600px]">
+            <p className="text-md sm:text-lg leading-relaxed text-stone-300">
               My work aims to bridge the digital divide, bringing practical, low-cost tech to communities where
               access is limited and opportunities are scarce.
             </p>
@@ -132,7 +132,7 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 text-[11px] sm:text-xs text-white/60 md:text-left text-center">
+            <div className="flex flex-wrap items-center gap-3 text-[11px] sm:text-xs text-white/60 md:text-left text-center justify-center lg:justify-start">
               <span className="rounded-full border border-white/10 bg-white/10 text-white/90 px-2 py-1 font-medium">
                 🌍 2.7B people still offline
               </span>
