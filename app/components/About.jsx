@@ -6,7 +6,7 @@ import { LuHeartHandshake } from "react-icons/lu";
 import { OrbitingCircles } from "./ui/OrbitingCircles";
 import NeonInfinity from "./ui/NeonInfinity";
 import Marquee from "./ui/Marquee";
-
+import CrossfadeSlideshow from "./reactbits/gallery/CrossfadeSlideshow";
 // devicons…
 import PythonOriginal from "devicons-react/icons/PythonOriginal";
 import JavascriptOriginal from "devicons-react/icons/JavascriptOriginal";
@@ -45,6 +45,7 @@ import SwaggerOriginal from "devicons-react/icons/SwaggerOriginal";
 import TailwindcssOriginal from "devicons-react/icons/TailwindcssOriginal";
 import VscodeOriginal from "devicons-react/icons/VscodeOriginal";
 import { Zod, ExpressJsLight, GitHubLight } from "developer-icons";
+import { Center } from "@react-three/drei";
 
 export default function About() {
   return (
@@ -203,7 +204,7 @@ export default function About() {
             </div>
           </SpotlightCard>
 
-          {/* CARD 3 — tall left under Card 1 (spans unchanged) */}
+          {/* CARD 3  */}
           <SpotlightCard
             className="
               group relative flex size-full flex-col justify-between overflow-hidden rounded-xl
@@ -212,8 +213,53 @@ export default function About() {
               max-md:min-h-[35rem]
             "
           >
-            {/* your content… */}
+            {/* Title */}
+            <div className="mb-4 text-center">
+              <h3 className="text-2xl font-bold text-emerald-500 drop-shadow-sm">
+                Beyond Code
+              </h3>
+              <p className="mt-1 text-base sm:text-md text-gray-400 italic">
+                Chasing growth on & off the keyboard
+              </p>
+            </div>
+
+            {/* Slideshow */}
+            <div className="relative mt-4 rounded-xl overflow-hidden shadow-lg font-bebas">
+              <CrossfadeSlideshow
+                intervalMs={2500}
+                fadeMs={600}
+                pauseOnHover
+                slides={[
+                  { src: "/acadia.png", caption: "Exploring National Parks 🏞️" },
+                  { src: "/tennis.png", caption: "Tennis Rallies 🎾" },
+                  { src: "/guitar.png", caption: "Strumming guitar 🎸", objectPos: "center 40%" },
+                  { src: "/ball.png", caption: "Basketball runs 🏀" },
+                  { src: "/gym.png", caption: "Workout Sesh 💪", objectPos: "center 1%" },
+                  { src: "/annapolis.png", caption: "Exploring hidden gems 🌍" },
+                ]}
+              />
+            </div>
+
+            {/* Tagline */}
+            <div className="mt-6 text-center space-y-2">
+              <p className="text-sm sm:text-base text-amber-400 italic">
+                Balance fuels better code.
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 text-xs text-white/80">
+                <span className="px-2 py-1 rounded-full border border-white/10 bg-white/10">
+                  🌍 Traveler
+                </span>
+                <span className="px-2 py-1 rounded-full border border-white/10 bg-white/10">
+                  🏀 Sports Junkie
+                </span>
+                <span className="px-2 py-1 rounded-full border border-white/10 bg-white/10">
+                  🎶 Music Lover
+                </span>
+              </div>
+            </div>
           </SpotlightCard>
+
+            
 
           {/* CARD 4 — orbiting icons (spans unchanged) */}
           <SpotlightCard
@@ -224,6 +270,7 @@ export default function About() {
               max-md:min-h-[19rem]
             "
           >
+
             {/* make the canvas scale without breaking card */}
             <div className="relative overflow-hidden flex items-center justify-center
                             h-[300px] w-[300px] sm:h-[360px] sm:w-[360px] md:h-[400px] md:w-[400px]">
@@ -252,7 +299,7 @@ export default function About() {
               max-md:min-h-[21rem]
             "
           >
-            {/* your content… */}
+          
           </SpotlightCard>
         </div>
       </div>
