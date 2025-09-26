@@ -31,7 +31,7 @@ export default function CrossfadeSlideshow({
       onMouseLeave={() => pauseOnHover && setPaused(false)}
     >
       {/* Taller aspect on small screens → more headroom for faces */}
-      <div className="relative w-full rounded-2xl border border-white/10 bg-white/5 aspect-[4/5] sm:aspect-[16/9] overflow-hidden">
+      <div className="relative w-full rounded-2xl border border-white/10 bg-white/5 aspect-[4/5] sm:aspect-[16/9] lg:h-[300px] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={keys[index]}
@@ -42,7 +42,7 @@ export default function CrossfadeSlideshow({
             transition={{ duration: fadeMs / 1000 }}
           >
             <Image
-              src={curr.src}                                 // <-- /gym.jpg (no /public)
+              src={curr.src}                                 
               alt={curr.alt ?? curr.caption ?? "gallery"}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1280px) 80vw, 800px"
@@ -61,7 +61,7 @@ export default function CrossfadeSlideshow({
         <div className="mt-3 text-center">
           <motion.p
             key={`cap-${keys[index]}`}
-            className="text-sm sm:text-base text-white/85"
+            className="text-md sm:text-lg text-white/85"
             initial={{ y: 8, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -8, opacity: 0 }}

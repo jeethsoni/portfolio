@@ -224,7 +224,7 @@ export default function About() {
             </div>
 
             {/* Slideshow */}
-            <div className="relative mt-4 rounded-xl overflow-hidden shadow-lg font-bebas">
+            <div className="relative mt-4 rounded-xl overflow-hidden shadow-xl font-bebas">
               <CrossfadeSlideshow
                 intervalMs={2500}
                 fadeMs={600}
@@ -234,8 +234,8 @@ export default function About() {
                   { src: "/tennis.png", caption: "Tennis Rallies 🎾" },
                   { src: "/guitar.png", caption: "Strumming guitar 🎸", objectPos: "center 40%" },
                   { src: "/ball.png", caption: "Basketball runs 🏀" },
-                  { src: "/gym.png", caption: "Workout Sesh 💪", objectPos: "center 1%" },
-                  { src: "/annapolis.png", caption: "Exploring hidden gems 🌍" },
+                  { src: "/gym.png", caption: "Getting Big 💪", objectPos: "center 1%" },
+                  { src: "/annapolis.png", caption: "Hiking 🚶‍♂️" },
                 ]}
               />
             </div>
