@@ -45,7 +45,8 @@ import SwaggerOriginal from "devicons-react/icons/SwaggerOriginal";
 import TailwindcssOriginal from "devicons-react/icons/TailwindcssOriginal";
 import VscodeOriginal from "devicons-react/icons/VscodeOriginal";
 import { Zod, ExpressJsLight, GitHubLight } from "developer-icons";
-import { Center } from "@react-three/drei";
+import { Smartphone } from 'lucide-react';
+
 
 export default function About() {
   return (
@@ -95,7 +96,7 @@ export default function About() {
             "
           >
             <div className="flex flex-col gap-1">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-pink-400 text-center tracking-wide">
+              <h3 className="text-xl md:text-2xl font-bold text-pink-400 text-center tracking-wide">
                 The Stack That Powers My Journey
               </h3>
 
@@ -181,7 +182,7 @@ export default function About() {
 
               {/* Currently exploring */}
               <div className="mt-14 text-center">
-                <h4 className="text-base sm:text-lg uppercase text-amber-300 mb-2 font-bold">
+                <h4 className="text-base sm:text-lg uppercase text-amber-300 mb-2 font-semibold">
                   🚀 Currently Exploring
                 </h4>
                 <ul className="mt-2 sm:mt-3 flex flex-col w-fit gap-2 justify-center mx-auto">
@@ -215,7 +216,7 @@ export default function About() {
           >
             {/* Title */}
             <div className="mb-4 text-center">
-              <h3 className="text-2xl font-bold text-emerald-500 drop-shadow-sm">
+              <h3 className="md:text-2xl text-xl font-bold text-emerald-500 drop-shadow-sm">
                 Beyond Code
               </h3>
               <p className="mt-1 text-base sm:text-md text-gray-400 italic">
@@ -299,7 +300,51 @@ export default function About() {
               max-md:min-h-[21rem]
             "
           >
-          
+            <div className="mb-4 text-center">
+              <h3 className="text-xl md:text-2xl font-bold text-orange-400 tracking-wide">
+                The Next Chapter Awaits
+              </h3>
+            </div>
+            <div className="-mx-4 sm:-mx-5 md:-mx-6 opacity-20">
+            <Marquee className="w-full [--duration:36s] [--gap:0.5rem]">
+              {[
+                {
+                  icon: <Smartphone size={30} className="text-white" />,
+                  heading: "Stay tuned",
+                  sub: "A new app is in the works"
+                }
+              ].map((item, i) => (
+                <span
+                  key={`r1-${i}`}
+                  className="flex flex-col items-center justify-center text-center
+                            rounded-2xl bg-white/5 p-4 
+                            w-40 sm:w-56 md:w-64
+                            text-white/70 whitespace-normal break-words"
+                >
+                  <div className="mb-2">{item.icon}</div>
+                  <p className="text-sm sm:text-base md:text-lg font-semibold text-white">
+                    {item.heading}
+                  </p>
+                  <p className="text-xs sm:text-sm text-white/60">
+                    {item.sub}
+                  </p>
+                </span>
+              ))}
+            </Marquee>
+          </div>
+          <div className="mt-4 flex flex-col items-center text-center">
+            <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-white/50">
+              Early Stages
+            </p>
+            <div className="mt-2 w-40 h-2 bg-white/10 rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-emerald-400 to-cyan-500 animate-pulse w-1/3 rounded-full" />
+            </div>
+          </div>
+
+          {/* Tagline */}
+          <p className="mt-4 text-center text-sm sm:text-base italic text-fuchsia-400">
+            Built with passion. Shared when ready.
+          </p>
           </SpotlightCard>
         </div>
       </div>
