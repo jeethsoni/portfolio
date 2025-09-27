@@ -5,10 +5,22 @@ import Header from "./components/Header";
 export default function Home() {
   return (
     <>
-    <div className="mb-35">
-      <Header />
-    </div>
-    <About />
+      {/* Home */}
+      <section id="home" className="scroll-mt-24 min-h-screen mb-36">
+        <Header />
+      </section>
+
+      {/* About */}
+      <section id="about" className="scroll-mt-24">
+        <About />
+      </section>
+
+      {/* If your navbar has links to these, keep placeholders
+          until you build the sections, so scrolling still works */}
+      <section id="work" className="scroll-mt-24 min-h-[60vh]" />
+      <section id="projects" className="scroll-mt-24 min-h-[60vh]" />
+      <section id="blog" className="scroll-mt-24 min-h-[60vh]" />
+      <section id="contact" className="scroll-mt-24 min-h-[60vh]" />
     </>
   );
 }
