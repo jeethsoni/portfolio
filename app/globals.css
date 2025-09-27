@@ -87,6 +87,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 
 
 /* Map your custom fonts to Tailwind tokens */
