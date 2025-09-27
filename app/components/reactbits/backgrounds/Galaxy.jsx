@@ -37,7 +37,7 @@ uniform float uTransparent;       // 0.0 or 1.0 (use float instead of bool)
 
 varying vec2 vUv;
 
-#define NUM_LAYER 2.0
+#define NUM_LAYER 1.5
 #define STAR_COLOR_CUTOFF 0.2
 #define MAT45 mat2(0.7071, -0.7071, 0.7071, 0.7071)
 #define PERIOD 3.0
