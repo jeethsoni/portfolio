@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       {/* Make body relative so the absolute background positions correctly */}
       <body className={`${workSans.variable} ${dmSans.variable} ${inter.variable} ${bebasNeue.variable} antialiased relative`}>
         {/* Global Galaxy Background (client) */}
-        <GalaxyBackground density={0.9} glowIntensity={0.3} transparent={false} />
+        <GalaxyBackground density={0.5} glowIntensity={0.3} transparent={false} />
 
         {/* App content */}
         {children}
