@@ -12,7 +12,7 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="scroll-mt-24">
+      <section id="about" className="scroll-mt-24 mb-36">
         <About />
       </section>
 
