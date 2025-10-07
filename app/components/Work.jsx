@@ -53,11 +53,11 @@ export default function Work() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <AuroraText className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text">
-            My Professional Journey
-          
-          </AuroraText>
-          <p className="mt-3 text-base md:text-lg text-gray-300/90">
+          <div className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-white/90 font-serif">
+            My professional {" "}
+          <AuroraText >Journey</AuroraText>
+          </div>
+          <p className="mt-3 text-base md:text-lg text-gray-300/90 font-serif">
             A timeline of my work experience and milestones
           </p>
         </motion.div>

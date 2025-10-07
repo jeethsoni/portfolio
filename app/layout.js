@@ -17,12 +17,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* Make body relative so the absolute background positions correctly */}
       <body className={`${workSans.variable} ${dmSans.variable} ${inter.variable} ${bebasNeue.variable} antialiased relative`}>
-        {/* Global Galaxy Background (client) */}
         <GalaxyBackground density={0.5} glowIntensity={0.3} transparent={false} />
-
-        {/* App content */}
         {children}
       </body>
     </html>
