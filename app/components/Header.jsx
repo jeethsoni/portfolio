@@ -9,7 +9,6 @@ import { FlipWords } from "./ui/flip-words";
 import { AuroraText } from "./ui/aurora-text";
 import React from "react";
 
-// keep dynamic import; we’ll control *rendering* with showGlobe
 const GlobeWorld = dynamic(() => import("./ui/Globe").then((m) => m.World), {
   ssr: false,
   loading: () => <div className="h-full w-full animate-pulse rounded-xl bg-white/5" />,
@@ -20,7 +19,6 @@ export default function Header() {
   const [showGlobe, setShowGlobe] = React.useState(false);
   const [arcs, setArcs] = React.useState(null); // <-- lazy data
 
-  // Only start loading the globe once the hero is near the viewport
   React.useEffect(() => {
     const el = heroRef.current;
     if (!el) return;
@@ -37,7 +35,6 @@ export default function Header() {
     return () => io.disconnect();
   }, []);
 
-  // Lazy-load arcs.json only after we decide to render the globe
   React.useEffect(() => {
     if (!showGlobe) return;
     let cancelled = false;
@@ -56,7 +53,6 @@ export default function Header() {
         <Navbar />
       </div>
 
-      {/* Frame */}
       <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-20 mt-10">
         <div className="grid grid-cols-6 gap-4 xl:gap-12 items-start">
           {/* PROFILE IMAGE */}
@@ -99,19 +95,32 @@ export default function Header() {
               deliver impactful, real-world solutions.
             </p>
 
-            <div className="pt-4 flex justify-center lg:justify-start gap-4">
+            <div className="pt-6 flex flex-wrap justify-center lg:justify-start gap-4">
+              {/* Resume button */}
               <a
-                href="#resume"
-                className="px-4 py-2 rounded-lg border text-white border-cyan-500 backdrop-blur-md hover:bg-white/20 transition shadow flex items-center gap-2"
+                href="api/resume"
+                download
+                className="group relative flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-white 
+                          border border-cyan-400/40 bg-gradient-to-b from-cyan-500/10 to-cyan-600/10 
+                          hover:from-cyan-400/20 hover:to-cyan-500/20 
+                          hover:border-cyan-300/60 shadow-lg shadow-cyan-500/10 
+                          backdrop-blur-md transition-all duration-300"
               >
-                Resume <GoDownload className="inline-block" />
+                <span className="group-hover:text-cyan-300 transition-colors">Resume</span>
+                <GoDownload className="text-cyan-300 group-hover:translate-y-0.5 transition-transform duration-300" />
               </a>
 
+              {/* View Work button */}
               <a
-                href="#mywork"
-                className="px-4 py-2 border text-white border-cyan-500 rounded-lg backdrop-blur-md hover:bg-white/20 transition shadow flex items-center gap-2"
+                href="#work"
+                className="group relative flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-white 
+                          border border-emerald-400/40 bg-gradient-to-b from-emerald-500/10 to-emerald-600/10 
+                          hover:from-emerald-400/20 hover:to-emerald-500/20 
+                          hover:border-emerald-300/60 shadow-lg shadow-emerald-500/10 
+                          backdrop-blur-md transition-all duration-300"
               >
-                View my work <IoMdArrowForward className="inline-block" />
+                <span className="group-hover:text-emerald-300 transition-colors">View my work</span>
+                <IoMdArrowForward className="text-emerald-300 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
             </div>
           </div>
@@ -128,7 +137,6 @@ export default function Header() {
             </div>
           </div>
 
-          {/* CONTEXT TEXT */}
           <div className="col-span-6 order-4 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-2 space-y-3 mx-auto text-center lg:mt-14 lg:text-left lg:items-start items-center flex flex-col">
             <p className="text-lg sm:text-2xl leading-relaxed font-bold text-green-600 drop-shadow-[0_0_4px_rgba(34,197,94,0.5)] font-bebas">
               The next wave of innovation shouldn’t leave anyone behind.
