@@ -54,7 +54,7 @@ const SAMPLE_PROJECTS = [
       "Achieved 90%+ test coverage using PyTest for reliable, maintainable code.",
       "Integrated Swagger UI for clear, interactive API documentation.",
     ],
-    links: { live: "", repo: "#" },
+    links: { live: "https://github.com/jeethsoni/movies-rest-api", repo: "https://github.com/jeethsoni/movies-rest-api" },
   },
 ];
 
@@ -145,7 +145,7 @@ function Modal({ open, onClose, project }) {
         </div>
 
         {project.image && (
-          <div className="aspect-[16/10] w-full overflow-hidden bg-white/5 relative">
+          <div className="w-full overflow-hidden bg-white/5 relative">
             <img
             src={project.image}
             alt={`${project.title}`}
