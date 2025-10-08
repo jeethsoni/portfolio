@@ -10,8 +10,11 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const bebasNeue = Bebas_Neue({ subsets: ["latin"], weight: ["400"], variable: "--font-bebas" });
 
 export const metadata = {
-  title: "Portfolio",
-  description: "Jeet Soni's Portfolio",
+  title: "Jeet Soni | Software Developer",
+  description: "Turning Ideas into Reality through Code and Creativity.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
