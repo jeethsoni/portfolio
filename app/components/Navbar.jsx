@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback } from "react";
+import React from "react";
 import Image from "next/image";
 import { IoIosMenu } from "react-icons/io";
 import { AiOutlineClose } from "react-icons/ai";
@@ -23,33 +23,60 @@ const LINKS = [
 ];
 
 export default function Navbar() {
+  const navRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
-  const toggle = () => setOpen((v) => !v);
+  const toggle = () => setOpen(v => !v);
   const close = () => setOpen(false);
 
-  // Which section is active?
-  const activeId = useScrollSpy(LINKS.map((l) => l.id));
+  // Queue an anchor to scroll to AFTER the menu closes
+  const pendingScrollRef = React.useRef(null);
 
-  // Smooth scroll with offset for fixed navbar (≈72px)
-  const smoothScroll = useCallback((id) => {
+  // Which section is active?
+  const activeId = useScrollSpy(LINKS.map(l => l.id));
+
+  // Core scroll function (window scroll; adjust if you use a custom scroll container)
+  const scrollToId = React.useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const navOffset = 72; // match your nav height
-    const top = el.getBoundingClientRect().top + window.scrollY - navOffset;
-    window.scrollTo({ top, behavior: "smooth" });
+
+    const navH = navRef.current?.offsetHeight ?? 72;
+    const target = el.getBoundingClientRect().top + window.scrollY - navH;
+
+    // Smooth scroll, and retry next frame (iOS/overlay quirk)
+    window.scrollTo({ top: target, behavior: "smooth" });
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: target, behavior: "smooth" });
+    });
+
+    // Keep URL hash in sync without jumping
+    history.replaceState(null, "", `#${id}`);
   }, []);
 
+  // When mobile menu closes, measure fresh layout and scroll
+  React.useEffect(() => {
+    if (!open && pendingScrollRef.current) {
+      // Let framer-motion remove height from flow first
+      requestAnimationFrame(() => {
+        const id = pendingScrollRef.current;
+        pendingScrollRef.current = null;
+        scrollToId(id);
+      });
+    }
+  }, [open, scrollToId]);
+
   return (
-    <nav className="fixed left-0 top-0 z-30 w-full
-      flex items-center
-      px-8 py-4 lg:px-10 xl:px-[8%]
-      bg-white/10 dark:bg-neutral-900/30
-      backdrop-blur-xl backdrop-saturate-150
-      border-b border-white/10 dark:border-white/10
-      shadow-[0_8px_30px_rgba(2,8,23,0.3)]">
-      
+    <nav
+      ref={navRef}
+      className="fixed left-0 top-0 z-30 w-full
+                 flex items-center
+                 px-8 py-4 lg:px-10 xl:px-[8%]
+                 bg-white/10 dark:bg-neutral-900/30
+                 backdrop-blur-xl backdrop-saturate-150
+                 border-b border-white/10 dark:border-white/10
+                 shadow-[0_8px_30px_rgba(2,8,23,0.3)]"
+    >
       {/* Logo */}
-      <button onClick={() => smoothScroll("home")} aria-label="Go home" className="lg:flex items-center">
+      <button onClick={() => scrollToId("home")} aria-label="Go home" className="lg:flex items-center">
         <Image
           src="/logo_dark.png"
           alt="Logo"
@@ -66,9 +93,9 @@ export default function Navbar() {
           return (
             <li key={l.id}>
               <button
-                onClick={() => smoothScroll(l.id)}
+                onClick={() => scrollToId(l.id)}
                 className={`px-3 py-1 rounded-full transition-colors duration-200
-                  ${active ? "bg-emerald-500 text-white" : "hover:bg-white/15"}`}
+                ${active ? "bg-emerald-500 text-white" : "hover:bg-white/15"}`}
                 aria-current={active ? "page" : undefined}
               >
                 {l.label}
@@ -116,14 +143,18 @@ export default function Navbar() {
           >
             <div className="w-full border-t border-white/10 bg-white/90 text-black backdrop-blur-md shadow-lg dark:bg-gray-900/90 dark:text-white">
               <ul className="flex flex-col divide-y divide-gray-200/40 dark:divide-white/10">
-                {LINKS.map(l => {
+                {LINKS.map((l) => {
                   const active = activeId === l.id;
                   return (
                     <li key={l.id}>
-                      {/* IMPORTANT: let the anchor do the scrolling; just close menu */}
                       <a
                         href={`#${l.id}`}
-                        onClick={() => { close(); }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          // queue the destination, then close; scrolling runs after close in useEffect
+                          pendingScrollRef.current = l.id;
+                          close();
+                        }}
                         className={`w-full flex items-center gap-3 px-5 py-3 text-left
                           ${active ? "bg-white/60 dark:bg-white/10" : "hover:bg-gray-100/70 dark:hover:bg-white/10"}`}
                       >
