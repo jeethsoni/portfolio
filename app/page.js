@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Work from "./components/Work";
 import Projects from "./components/Projects";
 import Blog from "./components/Blog";
+import Contact from "./components/Contact";
 
 export default function Home() {
   return (
@@ -30,12 +31,14 @@ export default function Home() {
         <Projects />
       </section>
 
-      <section id="blog" className="scroll-mt-24">
+      <section id="blog" className="scroll-mt-24 mb-36">
 
         <Blog />
       </section>
 
-      <section id="contact" className="scroll-mt-24 min-h-[60vh]" />
+      <section id="contact" className="scroll-mt-24">
+        <Contact />
+      </section>
     </>
   );
 }
