@@ -13,7 +13,7 @@ export const AuroraText = memo(
       backgroundImage: `linear-gradient(135deg, ${colors.join(", ")}, ${colors[0]})`,
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
-      backgroundSize: "200% auto", // ensure animation has "room" to move
+      backgroundSize: "200% auto", 
       animationDuration: `${10 / speed}s`,
     };
 

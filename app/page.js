@@ -13,29 +13,23 @@ export default function Home() {
       <section id="home" className="scroll-mt-24 min-h-screen mb-36">
         <Header />
       </section>
-
       {/* About */}
       <section id="about" className="scroll-mt-24 mb-36">
         <About />
       </section>
-
-      {/* If your navbar has links to these, keep placeholders
-          until you build the sections, so scrolling still works */}
+      {/* Work */}
       <section id="work" className="scroll-mt-24 mb-36" >
         <Work />
-
       </section>
-
+      {/* Projects */}
       <section id="projects" className="scroll-mt-24 mb-36">
-
         <Projects />
       </section>
-
+      {/* Blog */}
       <section id="blog" className="scroll-mt-24 mb-36">
-
         <Blog />
       </section>
-
+      {/* Contact */}
       <section id="contact" className="scroll-mt-24">
         <Contact />
       </section>

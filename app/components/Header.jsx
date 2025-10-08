@@ -2,44 +2,80 @@
 
 import dynamic from "next/dynamic";
 import Navbar from "./Navbar";
-import arcs from "@/data/arcs.json";
 import Image from "next/image";
 import { GoDownload } from "react-icons/go";
 import { IoMdArrowForward } from "react-icons/io";
 import { FlipWords } from "./ui/flip-words";
 import { AuroraText } from "./ui/aurora-text";
+import React from "react";
 
-const GlobeWorld = dynamic(() => import("./ui/Globe").then((m) => m.World), { ssr: false });
+// keep dynamic import; we’ll control *rendering* with showGlobe
+const GlobeWorld = dynamic(() => import("./ui/Globe").then((m) => m.World), {
+  ssr: false,
+  loading: () => <div className="h-full w-full animate-pulse rounded-xl bg-white/5" />,
+});
 
 export default function Header() {
+  const heroRef = React.useRef(null);
+  const [showGlobe, setShowGlobe] = React.useState(false);
+  const [arcs, setArcs] = React.useState(null); // <-- lazy data
+
+  // Only start loading the globe once the hero is near the viewport
+  React.useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowGlobe(true);
+          io.disconnect();
+        }
+      },
+      { root: null, rootMargin: "200px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Lazy-load arcs.json only after we decide to render the globe
+  React.useEffect(() => {
+    if (!showGlobe) return;
+    let cancelled = false;
+    import("@/data/arcs.json").then((m) => {
+      if (!cancelled) setArcs(m.default);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [showGlobe]);
+
   return (
-    <header className="relative min-h-screen overflow-hidden">
+    <header ref={heroRef} className="relative min-h-screen overflow-hidden">
       {/* Navbar */}
       <div className="absolute top-0 inset-x-0 z-[100]">
         <Navbar />
       </div>
 
-      {/* Centered frame (same rails as About) */}
+      {/* Frame */}
       <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-20 mt-10">
-        {/* 6-col grid; equal rails; responsive ordering */}
         <div className="grid grid-cols-6 gap-4 xl:gap-12 items-start">
-          {/* PROFILE IMAGE — mobile #1; desktop right column row 1 */}
+          {/* PROFILE IMAGE */}
           <div className="col-span-6 order-1 lg:order-none lg:col-span-2 lg:col-start-5 lg:row-start-1 flex justify-center lg:justify-start">
             <Image
               src="/profile_pic.png"
               width={350}
               height={350}
-              sizes="(max-width: 640px) 8rem, (max-width: 768px) 11rem, (max-width: 1279px) 16rem, 350px"
               alt="profile picture"
-              className="w-64 md:w-64 xl:w-[350px] rounded-2xl border-4 border-white/30 shadow-[0_0_25px_rgba(96,165,250,0.6)] transition-transform duration-300 hover:scale-105"
+              className="w-64 md:w-64 xl:w-[350px] h-auto rounded-2xl border-4 border-white/30 shadow-[0_0_25px_rgba(96,165,250,0.6)] transition-transform duration-300 hover:scale-105"
+              sizes="(max-width: 640px) 8rem, (max-width: 768px) 11rem, (max-width: 1279px) 16rem, 350px"
+              priority
             />
           </div>
 
-          {/* INTRO (text/buttons) — mobile #2; desktop left column row 1 */}
+          {/* INTRO */}
           <div className="col-span-6 order-2 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-1 flex flex-col text-center lg:text-left items-center lg:items-start">
             <h1 className="text-white font-bold leading-tight text-3xl sm:text-4xl md:text-5xl mt-6">
-              Hi
-              <span className="ml-2 inline-block origin-[70%_70%] animate-wave align-middle">👋</span>, I'm{" "}
+              Hi <span className="ml-2 inline-block origin-[70%_70%] animate-wave align-middle">👋</span>, I'm{" "}
               <AuroraText speed={2}>Jeet Soni</AuroraText>
             </h1>
 
@@ -68,35 +104,31 @@ export default function Header() {
                 href="#resume"
                 className="px-4 py-2 rounded-lg border text-white border-cyan-500 backdrop-blur-md hover:bg-white/20 transition shadow flex items-center gap-2"
               >
-                Resume
-                <GoDownload className="inline-block" />
+                Resume <GoDownload className="inline-block" />
               </a>
 
               <a
                 href="#mywork"
                 className="px-4 py-2 border text-white border-cyan-500 rounded-lg backdrop-blur-md hover:bg-white/20 transition shadow flex items-center gap-2"
               >
-                View my work
-                <IoMdArrowForward className="inline-block" />
+                View my work <IoMdArrowForward className="inline-block" />
               </a>
             </div>
           </div>
 
-          {/* GLOBE — mobile #3; desktop right column row 2 */}
+          {/* GLOBE */}
           <div className="col-span-6 order-3 lg:order-none lg:col-span-2 lg:col-start-5 lg:row-start-2 flex justify-center lg:justify-start">
             <div className="w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[340px] md:h-[340px] cursor-grab">
-              <GlobeWorld
-                globeConfig={{
-                  globeColor: "#1e3a8a",
-                  atmosphereColor: "#60A5FA",
-                  showAtmosphere: true,
-                }}
-                data={arcs}
-              />
+              {showGlobe && arcs && (
+                <GlobeWorld
+                  globeConfig={{ globeColor: "#1e3a8a", atmosphereColor: "#60A5FA", showAtmosphere: true }}
+                  data={arcs}
+                />
+              )}
             </div>
           </div>
 
-          {/* GLOBE INFO (paragraphs/chips) — mobile #4; desktop left column row 2 */}
+          {/* CONTEXT TEXT */}
           <div className="col-span-6 order-4 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-2 space-y-3 mx-auto text-center lg:mt-14 lg:text-left lg:items-start items-center flex flex-col">
             <p className="text-lg sm:text-2xl leading-relaxed font-bold text-green-600 drop-shadow-[0_0_4px_rgba(34,197,94,0.5)] font-bebas">
               The next wave of innovation shouldn’t leave anyone behind.

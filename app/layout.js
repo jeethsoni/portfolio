@@ -1,8 +1,8 @@
 import { Work_Sans, DM_Sans, Sora, Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
-// ⬇️ Import the client wrapper (this is allowed)
 import GalaxyBackground from "./components/GalaxyBackground";
+
 // Fonts
 const workSans = Work_Sans({ subsets: ["latin"], variable: "--font-sans" });
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400","500","600","700"], variable: "--font-heading" });

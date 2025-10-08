@@ -3,11 +3,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion" // use "framer-motion" if not on v11
 
 export const Timeline = ({ data = [], children }) => {
-  // Normalize to a single items array, preferring explicit data prop.
   const items = useMemo(() => {
     if (Array.isArray(data) && data.length) return data;
 
-    // Derive items from <Timeline.Item .../> children
     const derived = React.Children.toArray(children)
       .map((child) => {
         if (!React.isValidElement(child)) return null;
@@ -35,7 +33,6 @@ export const Timeline = ({ data = [], children }) => {
   const containerRef = useRef(null);
   const [height, setHeight] = useState(0);
 
-  // Keep height in sync with content size (robust on resize/content changes)
   useEffect(() => {
     if (!ref.current) return;
     const el = ref.current;
@@ -61,7 +58,6 @@ export const Timeline = ({ data = [], children }) => {
       className="w-full bg-transparent font-sans"
       ref={containerRef}
     >
-      {/* no built-in header — your Work() header stays in control */}
       <div ref={ref} className="relative mx-auto pb-20">
         {!hasItems ? (
           <div className="px-2 text-neutral-500 dark:text-neutral-400">
@@ -73,7 +69,6 @@ export const Timeline = ({ data = [], children }) => {
               key={index}
               className="flex justify-start pt-10 md:pt-40 md:gap-10"
             >
-              {/* Left sticky title & dot */}
               <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
                 <div className="h-10 absolute left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
                   <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
@@ -86,7 +81,6 @@ export const Timeline = ({ data = [], children }) => {
                 </h3>
               </div>
 
-              {/* Right content */}
               <div className="relative pl-20 pr-4 md:pl-4 w-full">
                 <h3 className="md:hidden text-2xl md:pl-20 md:text-3xl font-bold
              bg-clip-text text-transparent
@@ -101,7 +95,6 @@ export const Timeline = ({ data = [], children }) => {
           ))
         )}
 
-        {/* Vertical line + animated progress */}
         <div
           style={{ height: `${height}px` }}
           className="absolute left-8 top-0 overflow-hidden w-[2px]
@@ -123,7 +116,6 @@ export const Timeline = ({ data = [], children }) => {
   );
 };
 
-// Allow <Timeline.Item .../> usage; it renders nothing itself.
 Timeline.Item = () => null;
 
 export default Timeline;

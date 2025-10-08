@@ -54,10 +54,8 @@ export default function About() {
       <div className="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-black/10 via-black/0 to-black/10" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* grid unchanged */}
         <div className="grid w-full grid-cols-6 gap-4 md:auto-rows-[19rem]">
 
-          {/* CARD 1 — wide (col-span-6 md:col-span-4) */}
           <SpotlightCard
             className="
               group relative flex size-full flex-col justify-between overflow-hidden rounded-xl
@@ -86,7 +84,6 @@ export default function About() {
             </p>
           </SpotlightCard>
 
-          {/* CARD 2 */}
           <SpotlightCard
             className="
               group relative flex size-full flex-col justify-between overflow-hidden rounded-xl
@@ -180,7 +177,6 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Currently exploring */}
               <div className="mt-14 text-center">
                 <h4 className="text-base sm:text-lg uppercase text-amber-300 mb-2 font-semibold">
                   🚀 Currently Exploring
@@ -192,7 +188,6 @@ export default function About() {
                 </ul>
               </div>
 
-              {/* Habits strip */}
               <div className="mt-14 rounded-full border border-gray-700 bg-gray-600 p-2 text-center md:mt-8">
                 <p className="text-sm text-white/80 flex flex-row flex-wrap justify-center gap-1">
                   <span className="flex items-center">☕ Coffee-driven Commits</span>
@@ -262,7 +257,6 @@ export default function About() {
 
             
 
-          {/* CARD 4 — orbiting icons (spans unchanged) */}
           <SpotlightCard
             className="
               group relative flex size-full items-center justify-center overflow-hidden rounded-xl
@@ -272,7 +266,6 @@ export default function About() {
             "
           >
 
-            {/* make the canvas scale without breaking card */}
             <div className="relative overflow-hidden flex items-center justify-center
                             h-[300px] w-[300px] sm:h-[360px] sm:w-[360px] md:h-[400px] md:w-[400px]">
               <OrbitingCircles radius={50} iconSize={40} duration={20} speed={1.4}>
@@ -291,7 +284,7 @@ export default function About() {
             </div>
           </SpotlightCard>
 
-          {/* CARD 5 — wide bottom (spans unchanged) */}
+          {/* CARD 5 — wide bottom */}
           <SpotlightCard
             className="
               group relative flex size-full flex-col justify-between overflow-hidden rounded-xl
@@ -341,7 +334,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Tagline */}
           <p className="mt-4 text-center text-sm sm:text-base italic text-fuchsia-400">
             Built with passion. Shared when ready.
           </p>

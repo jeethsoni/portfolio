@@ -82,7 +82,8 @@ export default function Navbar() {
           alt="Logo"
           width={80}
           height={80}
-          className="cursor-pointer"
+          style={{ height: "auto" }} 
+          className="cursor-pointer shrink-0"
         />
       </button>
 

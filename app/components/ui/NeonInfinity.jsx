@@ -1,4 +1,3 @@
-// NeonInfinity.jsx (fixed responsive chip placement)
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -37,9 +36,8 @@ export default function NeonInfinity({
     "M80,350 C80,-50 300,-50 500,350 C700,750 920,750 920,350 C920,-50 700,-50 500,350 C300,750 80,750 80,350 Z";
 
   const wrapperRef = useRef(null);
-  const [tier, setTier] = useState(null); // null until mounted
+  const [tier, setTier] = useState(null);
 
-  // Robust width-based tier detection
   useEffect(() => {
     const el = wrapperRef.current;
     if (!el) return;
@@ -50,10 +48,8 @@ export default function NeonInfinity({
       else setTier("desktop");
     };
 
-    // initial
     setByWidth(el.getBoundingClientRect().width || window.innerWidth);
 
-    // Observe element size
     const ro = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const w = entry.contentRect?.width ?? el.clientWidth;
@@ -62,7 +58,6 @@ export default function NeonInfinity({
     });
     ro.observe(el);
 
-    // Window resize fallback (some browsers throttle RO weirdly)
     const onWinResize = () => setByWidth(el.getBoundingClientRect().width || window.innerWidth);
     window.addEventListener("resize", onWinResize);
 
@@ -72,7 +67,6 @@ export default function NeonInfinity({
     };
   }, []);
 
-  // Balanced positions per tier (percent of the card box)
   const slotsByTier = {
     mobile: [
    { top: "18%", left: "10%" },  // left top
@@ -97,7 +91,7 @@ export default function NeonInfinity({
     ],
   };
 
-  const slots = slotsByTier[tier ?? "desktop"]; // safe default while mounting
+  const slots = slotsByTier[tier ?? "desktop"]; 
 
   return (
     <div ref={wrapperRef} className={`relative w-full ${height}`}>
