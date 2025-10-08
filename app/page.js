@@ -3,6 +3,7 @@ import About from "./components/About";
 import Header from "./components/Header";
 import Work from "./components/Work";
 import Projects from "./components/Projects";
+import Blog from "./components/Blog";
 
 export default function Home() {
   return (
@@ -24,11 +25,16 @@ export default function Home() {
 
       </section>
 
-      <section id="projects" className="scroll-mt-24 min-h-[60vh]" >
+      <section id="projects" className="scroll-mt-24 mb-36">
 
         <Projects />
       </section>
-      <section id="blog" className="scroll-mt-24 min-h-[60vh]" />
+
+      <section id="blog" className="scroll-mt-24">
+
+        <Blog />
+      </section>
+
       <section id="contact" className="scroll-mt-24 min-h-[60vh]" />
     </>
   );
