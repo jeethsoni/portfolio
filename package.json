@@ -27,7 +27,7 @@
     "resend": "^6.1.2",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
-    "three": "0.170.0",
+    "three": "0.171.0",
     "three-globe": "2.44.0"
   },
   "devDependencies": {
@@ -39,6 +39,6 @@
     "tailwindcss": "^4"
   },
   "overrides": {
-    "three": "0.170.0"
+    "three": "0.171.0"
   }
 }
