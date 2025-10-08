@@ -39,8 +39,8 @@ function SkeletonCard({ icon: Icon, title, subtitle }) {
 export default function Blog() {
   return (
     <section className="py-8">
-      <div className="mb-8 text-center">
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-white/90 font-serif">
+      <div className="mb-8 text-center font-serif">
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-white/90">
           My {" "}
           <AuroraText>Blog</AuroraText>
         </h2>
