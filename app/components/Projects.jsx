@@ -144,6 +144,7 @@ function Modal({ open, onClose, project }) {
           </button>
         </div>
 
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         {project.image && (
           <div className="w-full overflow-hidden bg-white/5 relative">
             <img
