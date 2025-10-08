@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Briefcase, MapPin, CalendarDays } from "lucide-react";
 import { Timeline } from "./ui/Timeline";
