@@ -23,7 +23,6 @@ const LINKS = [
 ];
 
 export default function Navbar() {
-  const navRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
   const toggle = () => setOpen(v => !v);
   const close = () => setOpen(false);
@@ -34,7 +33,7 @@ export default function Navbar() {
   const scrollToId = React.useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
     history.replaceState(null, "", `#${id}`);
   }, []);
 
@@ -42,78 +41,82 @@ export default function Navbar() {
     if (!open && pendingScrollRef.current) {
       const id = pendingScrollRef.current;
       pendingScrollRef.current = null;
-      setTimeout(() => scrollToId(id), 10);
+      setTimeout(() => scrollToId(id), 20);
     }
   }, [open, scrollToId]);
 
   return (
-    <nav
-      ref={navRef}
-      className="
-        fixed top-0 lg:fixed lg:top-0 left-0
-        z-50 w-full flex items-center
-        px-8 py-4 lg:px-10 xl:px-[8%]
-        bg-white/10 dark:bg-neutral-900/30
-        backdrop-blur-xl backdrop-saturate-150
-        border-b border-white/10 dark:border-white/10
-        shadow-[0_8px_30px_rgba(2,8,23,0.3)]
-      "
-    >
-      <button onClick={() => scrollToId("home")} aria-label="Go home" className="lg:flex items-center">
-        <Image
-          src="/logo_dark.png"
-          alt="Logo"
-          width={80}
-          height={80}
-          style={{ height: "auto" }}
-          className="cursor-pointer shrink-0"
-        />
-      </button>
-
-      {/* Desktop links */}
-      <ul className="hidden lg:flex mx-auto space-x-2 text-white font-medium bg-white/10 px-1.5 py-1 rounded-full border border-white/20 backdrop-blur-md">
-        {LINKS.map((l) => {
-          const active = activeId === l.id;
-          return (
-            <li key={l.id}>
-              <button
-                onClick={() => scrollToId(l.id)}
-                className={`px-3 py-1 rounded-full transition-colors duration-200
-                ${active ? "bg-emerald-500/70 text-white" : "hover:bg-white/15"}`}
-                aria-current={active ? "page" : undefined}
-              >
-                {l.label}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* Desktop socials */}
-      <div className="hidden lg:flex items-center gap-4">
-        <a href="https://www.instagram.com/_jeetsoni" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-gray-50 transition-colors">
-          <FaInstagram size={22} />
-        </a>
-        <a href="https://www.linkedin.com/in/jeet-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-gray-50 transition-colors">
-          <FaLinkedin size={22} />
-        </a>
-        <a href="https://www.github.com/jeethsoni" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-400 hover:text-gray-50 transition-colors">
-          <FaGithub size={22} />
-        </a>
-      </div>
-
-      {/* Mobile hamburger */}
-      <button
-        onClick={toggle}
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        aria-controls="mobile-menu"
-        className="sticky lg:hidden ml-auto inline-flex items-center justify-center p-2 rounded-md text-white"
+    <>
+      {/* FIXED NAVBAR */}
+      <nav
+        className="
+          fixed inset-x-0 top-0 z-[9999]
+          h-16 md:h-20
+          flex items-center
+          px-6 md:px-10 xl:px-[8%]
+          text-white
+          bg-neutral-900/90
+          supports-[backdrop-filter]:bg-neutral-900/60
+          supports-[backdrop-filter]:backdrop-blur-xl
+          border-b border-white/10
+        "
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        {open ? <AiOutlineClose size={24} /> : <IoIosMenu size={26} />}
-      </button>
+        {/* Logo */}
+        <button onClick={() => scrollToId("home")} aria-label="Go home" className="flex items-center">
+          <Image
+            src="/logo_dark.png"
+            alt="Logo"
+            width={80}
+            height={80}
+          />
+        </button>
 
-      {/* Mobile dropdown */}
+        {/* Desktop links */}
+        <ul className="hidden lg:flex mx-auto space-x-2 font-medium bg-white/10 px-1.5 py-1 rounded-full border border-white/20 backdrop-blur-md">
+          {LINKS.map((l) => {
+            const active = activeId === l.id;
+            return (
+              <li key={l.id}>
+                <button
+                  onClick={() => scrollToId(l.id)}
+                  className={`px-3 py-1 rounded-full transition-colors duration-200
+                  ${active ? "bg-emerald-500/70 text-white" : "hover:bg-white/15"}`}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {l.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Desktop socials */}
+        <div className="hidden lg:flex items-center gap-4">
+          <a href="https://www.instagram.com/_jeetsoni" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-300 hover:text-white transition-colors">
+            <FaInstagram size={22} />
+          </a>
+          <a href="https://www.linkedin.com/in/jeet-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-300 hover:text-white transition-colors">
+            <FaLinkedin size={22} />
+          </a>
+          <a href="https://www.github.com/jeethsoni" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-300 hover:text-white transition-colors">
+            <FaGithub size={22} />
+          </a>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          onClick={toggle}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          className="lg:hidden ml-auto inline-flex items-center justify-center p-2 rounded-md text-white"
+        >
+          {open ? <AiOutlineClose size={24} /> : <IoIosMenu size={26} />}
+        </button>
+      </nav>
+
+      {/* FIXED MOBILE DROPDOWN (not absolute) */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
@@ -123,9 +126,14 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.22 }}
-            className="absolute left-0 right-0 top-full lg:hidden overflow-hidden z-40"
+            className="
+              fixed inset-x-0
+              z-[9998]
+              top-16 md:top-20
+              lg:hidden overflow-hidden
+            "
           >
-            <div className="w-full border-t border-white/10 bg-white/90 text-black backdrop-blur-md shadow-lg dark:bg-gray-900/90 dark:text-white">
+            <div className="w-full border-t border-white/10 bg-white/95 text-black shadow-lg dark:bg-gray-900/95 dark:text-white">
               <ul className="flex flex-col divide-y divide-gray-200/40 dark:divide-white/10">
                 {LINKS.map((l) => {
                   const active = activeId === l.id;
@@ -160,6 +168,9 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+
+      {/* SPACER so content starts below the fixed nav */}
+      <div aria-hidden className="h-16 md:h-20" />
+    </>
   );
 }

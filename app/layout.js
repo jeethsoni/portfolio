@@ -2,6 +2,7 @@ import { Work_Sans, DM_Sans, Sora, Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
 import GalaxyBackground from "./components/GalaxyBackground";
+import Navbar from "./components/Navbar";
 
 // Fonts
 const workSans = Work_Sans({ subsets: ["latin"], variable: "--font-sans" });
@@ -19,9 +20,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={`${workSans.variable} ${dmSans.variable} ${inter.variable} ${bebasNeue.variable} antialiased relative`}>
+
         <GalaxyBackground density={0.3} glowIntensity={0.1} transparent={false} speed={0.2} mouseInteraction={false} mouseRepulsion={false} twinkleIntensity={0.2} starSpeed={0.1}/>
+        <Navbar />
         {children}
       </body>
     </html>
