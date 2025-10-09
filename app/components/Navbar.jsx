@@ -28,61 +28,44 @@ export default function Navbar() {
   const toggle = () => setOpen(v => !v);
   const close = () => setOpen(false);
 
-  // Queue an anchor to scroll to AFTER the menu closes
   const pendingScrollRef = React.useRef(null);
-
-  // Which section is active?
   const activeId = useScrollSpy(LINKS.map(l => l.id));
 
-  // Core scroll function (window scroll; adjust if you use a custom scroll container)
   const scrollToId = React.useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
-
-    const navH = navRef.current?.offsetHeight ?? 72;
-    const target = el.getBoundingClientRect().top + window.scrollY - navH;
-
-    // Smooth scroll, and retry next frame (iOS/overlay quirk)
-    window.scrollTo({ top: target, behavior: "smooth" });
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: target, behavior: "smooth" });
-    });
-
-    // Keep URL hash in sync without jumping
+    el.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
     history.replaceState(null, "", `#${id}`);
   }, []);
 
-  // When mobile menu closes, measure fresh layout and scroll
   React.useEffect(() => {
     if (!open && pendingScrollRef.current) {
-      // Let framer-motion remove height from flow first
-      requestAnimationFrame(() => {
-        const id = pendingScrollRef.current;
-        pendingScrollRef.current = null;
-        scrollToId(id);
-      });
+      const id = pendingScrollRef.current;
+      pendingScrollRef.current = null;
+      setTimeout(() => scrollToId(id), 10);
     }
   }, [open, scrollToId]);
 
   return (
     <nav
       ref={navRef}
-      className="fixed left-0 top-0 z-30 w-full
-                 flex items-center
-                 px-8 py-4 lg:px-10 xl:px-[8%]
-                 bg-white/10 dark:bg-neutral-900/30
-                 backdrop-blur-xl backdrop-saturate-150
-                 border-b border-white/10 dark:border-white/10
-                 shadow-[0_8px_30px_rgba(2,8,23,0.3)]"
+      className="
+        fixed top-0 lg:fixed lg:top-0 left-0
+        z-50 w-full flex items-center
+        px-8 py-4 lg:px-10 xl:px-[8%]
+        bg-white/10 dark:bg-neutral-900/30
+        backdrop-blur-xl backdrop-saturate-150
+        border-b border-white/10 dark:border-white/10
+        shadow-[0_8px_30px_rgba(2,8,23,0.3)]
+      "
     >
-      {/* Logo */}
       <button onClick={() => scrollToId("home")} aria-label="Go home" className="lg:flex items-center">
         <Image
           src="/logo_dark.png"
           alt="Logo"
           width={80}
           height={80}
-          style={{ height: "auto" }} 
+          style={{ height: "auto" }}
           className="cursor-pointer shrink-0"
         />
       </button>
@@ -96,7 +79,7 @@ export default function Navbar() {
               <button
                 onClick={() => scrollToId(l.id)}
                 className={`px-3 py-1 rounded-full transition-colors duration-200
-                ${active ? "bg-emerald-500 text-white" : "hover:bg-white/15"}`}
+                ${active ? "bg-emerald-500/70 text-white" : "hover:bg-white/15"}`}
                 aria-current={active ? "page" : undefined}
               >
                 {l.label}
@@ -125,9 +108,9 @@ export default function Navbar() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         aria-controls="mobile-menu"
-        className="lg:hidden ml-auto inline-flex items-center justify-center p-2 rounded-md"
+        className="sticky lg:hidden ml-auto inline-flex items-center justify-center p-2 rounded-md text-white"
       >
-        {open ? <AiOutlineClose size={24} className="text-white" /> : <IoIosMenu size={26} className="text-white" />}
+        {open ? <AiOutlineClose size={24} /> : <IoIosMenu size={26} />}
       </button>
 
       {/* Mobile dropdown */}
@@ -140,7 +123,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.22 }}
-            className="absolute left-0 right-0 top-full lg:hidden overflow-hidden"
+            className="absolute left-0 right-0 top-full lg:hidden overflow-hidden z-40"
           >
             <div className="w-full border-t border-white/10 bg-white/90 text-black backdrop-blur-md shadow-lg dark:bg-gray-900/90 dark:text-white">
               <ul className="flex flex-col divide-y divide-gray-200/40 dark:divide-white/10">
@@ -152,7 +135,6 @@ export default function Navbar() {
                         href={`#${l.id}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          // queue the destination, then close; scrolling runs after close in useEffect
                           pendingScrollRef.current = l.id;
                           close();
                         }}
