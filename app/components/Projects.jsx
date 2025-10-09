@@ -9,7 +9,7 @@ const SAMPLE_PROJECTS = [
     id: "portfolio",
     title: "Personal Portfolio",
     description:
-      "An interactive digital space built with Next.js and TailwindCSS to showcase my journey as a developer. Blending sleek visuals with seamless motion, it turns each project into a story where design meets code and performance feels effortless.",
+      "An interactive digital space built with Next.js and TailwindCSS to showcase my journey as a developer. Blending slick visuals with seamless motion, it turns each project into a story where design meets code and performance feels effortless.",
     image: "/projects/portfolio.png",
     year: 2025,
     stack: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
