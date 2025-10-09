@@ -123,56 +123,62 @@ function Card({ item, onOpen }) {
 
 function Modal({ open, onClose, project }) {
   if (!open || !project) return null;
+
   return (
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-3"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3"
     >
-      <div className="w-full max-w-3xl overflow-hidden rounded-2xl border border-white/10 bg-gray-800">
-        <div className="flex items-start justify-between gap-4 p-5">
-          <div>
-            <h2 className="text-xl font-bold text-white">{project.title}</h2>
-            <p className="mt-1 text-sm text-gray-300">{project.description}</p>
-          </div>
+      <div className="relative w-full max-w-3xl rounded-2xl border border-white/10 bg-gray-800 flex flex-col max-h-[90vh]">
+        {/* Header */}
+        <div className="top-0 z-10 bg-gray-800 border-b border-white/10 p-5 relative">
           <button
             onClick={onClose}
-            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-gray-300 hover:bg-white/10"
             aria-label="Close"
+            className="absolute right-2 top-5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-red-500"
           >
             Close
           </button>
+
+          <h2 className="text-xl font-bold text-emerald-500">{project.title}</h2>
+          <p className="mt-2 text-sm text-gray-300 leading-relaxed">
+            {project.description}
+          </p>
         </div>
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {project.image && (
-          <div className="w-full overflow-hidden bg-white/5 relative">
-            <img
-            src={project.image}
-            alt={`${project.title}`}
-            className="h-full w-full object-cover"
-          />
-          </div>
-        )}
+        {/* Scrollable body */}
+        <div className="overflow-y-auto">
+          {project.image && (
+            <div className="w-full overflow-hidden bg-white/5">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full object-cover h-"
+              />
+            </div>
+          )}
 
-        {project.bullets?.length ? (
-          <div className="p-5">
-            <ul className="list-disc space-y-2 pl-6 text-sm text-gray-300">
-              {project.bullets.map((b, i) => (
-                <li key={i}>{b}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+          {project.bullets?.length ? (
+            <div className="p-5">
+              <ul className="list-disc space-y-2 pl-6 text-sm text-gray-300">
+                {project.bullets.map((b, i) => (
+                  <li key={i}>{b}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </div>
 
+        {/* Footer */}
         {(project.links?.repo || project.links?.live) && (
-          <div className="flex flex-wrap gap-3 p-5 pt-0">
+          <div className="sticky bottom-0 bg-gray-800 border-t border-white/10 flex flex-wrap gap-3 p-5">
             {project.links?.repo && (
               <a
                 href={project.links.repo}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-200 hover:bg-cyan-500/20 transition"
               >
                 Repo
               </a>
@@ -182,7 +188,7 @@ function Modal({ open, onClose, project }) {
                 href={project.links.live}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-200 hover:bg-emerald-500/20"
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-200 hover:bg-emerald-500/20 transition"
               >
                 Live Demo
               </a>
@@ -193,6 +199,10 @@ function Modal({ open, onClose, project }) {
     </div>
   );
 }
+
+
+
+
 
 export default function Projects({ items = SAMPLE_PROJECTS }) {
   const data = useMemo(() => items.filter(Boolean), [items]);
