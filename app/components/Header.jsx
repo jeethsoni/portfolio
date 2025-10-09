@@ -17,7 +17,7 @@ const GlobeWorld = dynamic(() => import("./ui/Globe").then((m) => m.World), {
 export default function Header() {
   const heroRef = React.useRef(null);
   const [showGlobe, setShowGlobe] = React.useState(false);
-  const [arcs, setArcs] = React.useState(null); // <-- lazy data
+  const [arcs, setArcs] = React.useState(null);
 
   React.useEffect(() => {
     const el = heroRef.current;
@@ -80,7 +80,6 @@ export default function Header() {
                 className="text-3xl font-flip font-normal [&_span]:text-emerald-500"
                 words={[
                   "Full Stack Developer",
-                  "Backend Developer",
                   "Innovator",
                   "AI/ML Practitioner",
                   "Tech Enthusiast",
@@ -90,9 +89,10 @@ export default function Header() {
             </h2>
 
             <p className="mt-2 text-md text-white/80 max-w-[600px] leading-relaxed md:text-lg">
-              A passionate developer with expertise in Express.js, FastAPI, PostgreSQL, and MongoDB. Skilled at
-              building scalable REST APIs, optimizing data systems, and leveraging cloud technologies like AWS to
-              deliver impactful, real-world solutions.
+              Software developer proficient in Python, JavaScript, and SQL, 
+              with hands-on experience in Express.js, FastAPI, PostgreSQL, and MongoDB. 
+              Skilled in building scalable REST APIs, optimizing data systems, and leveraging AWS cloud services to deliver impactful, 
+              real-world solutions that bridge performance and reliability.
             </p>
 
             <div className="pt-6 flex flex-wrap justify-center lg:justify-start gap-4">
@@ -138,10 +138,10 @@ export default function Header() {
           </div>
 
           <div className="col-span-6 order-4 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-2 space-y-3 mx-auto text-center lg:mt-14 lg:text-left lg:items-start items-center flex flex-col">
-            <p className="text-lg sm:text-2xl leading-relaxed font-bold text-green-600 drop-shadow-[0_0_4px_rgba(34,197,94,0.5)] font-bebas">
+            <p className="text-lg sm:text-2xl leading-relaxed font-bold text-cyan-500 drop-shadow-[0_0_4px_rgba(34,197,94,0.5)] font-bebas">
               The next wave of innovation shouldn’t leave anyone behind.
             </p>
-            <p className="text-md sm:text-lg leading-relaxed text-stone-300">
+            <p className="text-md sm:text-lg leading-relaxed text-white/80">
               My work aims to bridge the digital divide, bringing practical, low-cost tech to communities where
               access is limited and opportunities are scarce.
             </p>
