@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${workSans.variable} ${dmSans.variable} ${inter.variable} ${bebasNeue.variable} antialiased relative`}>
-        <GalaxyBackground density={0.5} glowIntensity={0.3} transparent={false} />
+        <GalaxyBackground density={0.3} glowIntensity={0.1} transparent={false} speed={0.2} mouseInteraction={false} mouseRepulsion={false} twinkleIntensity={0.2} starSpeed={0.1}/>
         {children}
       </body>
     </html>
