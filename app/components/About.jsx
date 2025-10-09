@@ -101,7 +101,7 @@ export default function About() {
               <div className="flex flex-col gap-5 sm:gap-6 md:gap-7 mt-6 sm:mt-8">
                 {/* Row 1 */}
                 <div className="-mx-4 sm:-mx-5 md:-mx-6">
-                  <Marquee className="w-full [--duration:40s] [--gap:0.5rem]">
+                  <Marquee className="w-full [--duration:50s] [--gap:0.5rem]">
                     {[
                       { icon: <NodejsOriginalWordmark size={20} className="inline-block mr-1" />, label: "Node.js" },
                       { icon: <BootstrapOriginal size={20} className="inline-block mr-1" />, label: "Bootstrap" },
@@ -127,7 +127,7 @@ export default function About() {
 
                 {/* Row 2 */}
                 <div className="-mx-4 sm:-mx-5 md:-mx-6">
-                  <Marquee className="w-full [--duration:48s] [--gap:0.5rem]" reverse>
+                  <Marquee className="w-full [--duration:50s] [--gap:0.5rem]" reverse>
                     {[
                       { icon: <AmazonwebservicesOriginalWordmark size={20} className="inline-block mr-1" />, label: "AWS" },
                       { icon: <DockerOriginal size={20} className="inline-block mr-1" />, label: "Docker" },
@@ -152,7 +152,7 @@ export default function About() {
 
                 {/* Row 3 */}
                 <div className="-mx-4 sm:-mx-5 md:-mx-6">
-                  <Marquee className="w-full [--duration:54s] [--gap:0.5rem]">
+                  <Marquee className="w-full [--duration:50s] [--gap:0.5rem]">
                     {[
                       { icon: <DynamodbOriginal size={18} className="inline-block mr-1" />, label: "DynamoDB" },
                       { icon: <MongodbOriginal size={20} className="inline-block mr-1" />, label: "MongoDB" },
