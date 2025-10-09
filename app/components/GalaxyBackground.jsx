@@ -2,14 +2,13 @@
 
 import dynamic from "next/dynamic";
 
-// Load Galaxy only on the client
 const Galaxy = dynamic(
   () => import("./reactbits/backgrounds/Galaxy"),
   { ssr: false }
 );
 
 export default function GalaxyBackground({
-  density = 0.9,
+  density = 0.5,
   glowIntensity = 0.5,
   transparent = false,
   className = "",
@@ -17,9 +16,7 @@ export default function GalaxyBackground({
   return (
     <div className={`inset-0 -z-10 pointer-events-none fixed ${className}`}>
       <Galaxy
-        density={density}
-        glowIntensity={glowIntensity}
-        transparent={transparent}
+        density={0.5} glowIntensity={0.1} transparent={false} speed={0} mouseInteraction={false} mouseRepulsion={false} twinkleIntensity={0} starSpeed={0} 
       />
     </div>
   );
