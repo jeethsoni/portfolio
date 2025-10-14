@@ -112,7 +112,7 @@ export default function Navbar() {
           aria-controls="mobile-menu"
           className="lg:hidden ml-auto inline-flex items-center justify-center p-2 rounded-md text-white"
         >
-          {open ? <AiOutlineClose size={26} /> : <IoIosMenu size={26} />}
+          {open ? <AiOutlineClose size={28} /> : <IoIosMenu size={28} />}
         </button>
       </nav>
 
