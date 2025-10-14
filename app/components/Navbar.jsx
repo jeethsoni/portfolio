@@ -65,10 +65,10 @@ export default function Navbar() {
         {/* Logo */}
         <button onClick={() => scrollToId("home")} aria-label="Go home" className="flex items-center">
           <Image
-            src="/logo_dark.png"
+            src="/JS_dark.png"
             alt="Logo"
-            width={80}
-            height={80}
+            width={100}
+            height={100}
           />
         </button>
 
@@ -81,7 +81,7 @@ export default function Navbar() {
                 <button
                   onClick={() => scrollToId(l.id)}
                   className={`px-3 py-1 rounded-full transition-colors duration-200
-                  ${active ? "bg-emerald-500/70 text-white" : "hover:bg-white/15"}`}
+                  ${active ? "bg-blue-600/80 text-white" : "hover:bg-white/15"}`}
                   aria-current={active ? "page" : undefined}
                 >
                   {l.label}
@@ -112,11 +112,11 @@ export default function Navbar() {
           aria-controls="mobile-menu"
           className="lg:hidden ml-auto inline-flex items-center justify-center p-2 rounded-md text-white"
         >
-          {open ? <AiOutlineClose size={24} /> : <IoIosMenu size={26} />}
+          {open ? <AiOutlineClose size={26} /> : <IoIosMenu size={26} />}
         </button>
       </nav>
 
-      {/* FIXED MOBILE DROPDOWN (not absolute) */}
+      {/* MOBILE DROPDOWN */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
@@ -169,7 +169,6 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* SPACER so content starts below the fixed nav */}
       <div aria-hidden className="h-16 md:h-20" />
     </>
   );
