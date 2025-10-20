@@ -9,15 +9,16 @@ import { FlipWords } from "./ui/flip-words";
 import { AuroraText } from "./ui/aurora-text";
 import React from "react";
 
-const GlobeWorld = dynamic(() => import("./ui/Globe").then((m) => m.World), {
+const GlobeWorld = dynamic(() => import("./ui/Globe").then(m => m.default), {
   ssr: false,
-  loading: () => <div className="h-full w-full animate-pulse rounded-xl bg-white/5" />,
+  loading: () => (
+    <div className="h-full w-full animate-pulse rounded-xl bg-white/5" />
+  ),
 });
 
 export default function Header() {
   const heroRef = React.useRef(null);
   const [showGlobe, setShowGlobe] = React.useState(false);
-  const [arcs, setArcs] = React.useState(null);
 
   React.useEffect(() => {
     const el = heroRef.current;
@@ -34,17 +35,6 @@ export default function Header() {
     io.observe(el);
     return () => io.disconnect();
   }, []);
-
-  React.useEffect(() => {
-    if (!showGlobe) return;
-    let cancelled = false;
-    import("@/data/arcs.json").then((m) => {
-      if (!cancelled) setArcs(m.default);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [showGlobe]);
 
   return (
     <header ref={heroRef} className="relative min-h-screen overflow-hidden">
@@ -109,7 +99,6 @@ export default function Header() {
                   className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]
                             bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
                 />
-                
                 <span
                   className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2
                             rounded-full bg-slate-950 px-6 py-2 text-sm font-medium text-white
@@ -122,30 +111,27 @@ export default function Header() {
                 </span>
               </a>
 
-
+              {/* View My Work button */}
               <a
-              href="#work"
-              className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px]
-                        focus:outline-none focus:ring-2 focus:ring-emerald-400 
-                        focus:ring-offset-2 focus:ring-offset-gray-950"
+                href="#work"
+                className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px]
+                          focus:outline-none focus:ring-2 focus:ring-emerald-400 
+                          focus:ring-offset-2 focus:ring-offset-gray-950"
               >
-              <span
-                className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,#34d399_0%,#065f46_50%,#34d399_100%)]"
-              />
-
-              <span
-                className="inline-flex h-full w-full items-center justify-center gap-2 rounded-full
-                          bg-slate-950/90 px-6 py-2 text-sm font-medium text-white
-                          backdrop-blur-2xl border border-emerald-500/30
-                          shadow-[0_0_15px_rgba(16,185,129,0.15)]
-                          hover:shadow-[0_0_25px_rgba(16,185,129,0.3)]
-                          transition-all duration-300"
-              >
-                <span className="group-hover:text-emerald-300 transition-colors text-lg">
-                  View My Work
+                <span className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,#34d399_0%,#065f46_50%,#34d399_100%)]" />
+                <span
+                  className="inline-flex h-full w-full items-center justify-center gap-2 rounded-full
+                            bg-slate-950/90 px-6 py-2 text-sm font-medium text-white
+                            backdrop-blur-2xl border border-emerald-500/30
+                            shadow-[0_0_15px_rgba(16,185,129,0.15)]
+                            hover:shadow-[0_0_25px_rgba(16,185,129,0.3)]
+                            transition-all duration-300"
+                >
+                  <span className="group-hover:text-emerald-300 transition-colors text-lg">
+                    View My Work
+                  </span>
+                  <IoMdArrowForward className="text-emerald-300 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <IoMdArrowForward className="text-emerald-300 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
               </a>
             </div>
           </div>
@@ -153,15 +139,23 @@ export default function Header() {
           {/* GLOBE */}
           <div className="col-span-6 order-3 lg:order-none lg:col-span-2 lg:col-start-5 lg:row-start-2 flex justify-center lg:justify-start">
             <div className="w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[340px] md:h-[340px] cursor-grab">
-              {showGlobe && arcs && (
+              {showGlobe && (
                 <GlobeWorld
-                  globeConfig={{ globeColor: "#1e3a8a", atmosphereColor: "#60A5FA", showAtmosphere: true }}
-                  data={arcs}
+                  globeConfig={{
+                    globeColor: "#1e3a8a",
+                    atmosphereColor: "#60A5FA",
+                    showAtmosphere: true,
+                    // nice, earth-ish motion defaults:
+                    autoRotateSpeed: 0.15, // radians/sec
+                    diffuse: 1.05,
+                    mapBrightness: 0.95,
+                  }}
                 />
               )}
             </div>
           </div>
 
+          {/* STATS / MISSION */}
           <div className="col-span-6 order-4 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-2 space-y-3 mx-auto text-center lg:mt-14 lg:text-left lg:items-start items-center flex flex-col">
             <p className="text-lg sm:text-2xl leading-relaxed font-bold text-cyan-500 drop-shadow-[0_0_4px_rgba(34,197,94,0.5)] font-bebas">
               The next wave of innovation shouldn’t leave anyone behind.
