@@ -98,29 +98,54 @@ export default function Header() {
             <div className="pt-6 flex flex-wrap justify-center lg:justify-start gap-4">
               {/* Resume button */}
               <a
-                href="api/resume"
-                download
-                className="group relative flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-white 
-                          border border-cyan-400/40 bg-gradient-to-b from-cyan-500/10 to-cyan-600/10 
-                          hover:from-cyan-400/20 hover:to-cyan-500/20 
-                          hover:border-cyan-300/60 shadow-lg shadow-cyan-500/10 
-                          backdrop-blur-md transition-all duration-300"
+                href="/api/resume"
+                download="Jeet_Soni_Resume.pdf"
+                className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px]
+                          focus:outline-none focus:ring-2 focus:ring-slate-400 
+                          focus:ring-offset-2 focus:ring-offset-slate-50"
+                aria-label="Download Resume"
               >
-                <span className="group-hover:text-cyan-300 transition-colors">Resume</span>
-                <GoDownload className="text-cyan-300 group-hover:translate-y-0.5 transition-transform duration-300" />
+                <span
+                  className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]
+                            bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
+                />
+                
+                <span
+                  className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2
+                            rounded-full bg-slate-950 px-6 py-2 text-sm font-medium text-white
+                            backdrop-blur-3xl transition-all duration-300"
+                >
+                  <span className="transition-colors group-hover:text-indigo-300 text-lg">
+                    Resume
+                  </span>
+                  <GoDownload className="text-indigo-300 transition-transform duration-300 group-hover:translate-y-0.5" />
+                </span>
               </a>
 
-              {/* View Work button */}
+
               <a
-                href="#work"
-                className="group relative flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-white 
-                          border border-emerald-400/40 bg-gradient-to-b from-emerald-500/10 to-emerald-600/10 
-                          hover:from-emerald-400/20 hover:to-emerald-500/20 
-                          hover:border-emerald-300/60 shadow-lg shadow-emerald-500/10 
-                          backdrop-blur-md transition-all duration-300"
+              href="#work"
+              className="group relative inline-flex h-12 overflow-hidden rounded-full p-[1px]
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400 
+                        focus:ring-offset-2 focus:ring-offset-gray-950"
               >
-                <span className="group-hover:text-emerald-300 transition-colors">View my work</span>
-                <IoMdArrowForward className="text-emerald-300 group-hover:translate-x-1 transition-transform duration-300" />
+              <span
+                className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,#34d399_0%,#065f46_50%,#34d399_100%)]"
+              />
+
+              <span
+                className="inline-flex h-full w-full items-center justify-center gap-2 rounded-full
+                          bg-slate-950/90 px-6 py-2 text-sm font-medium text-white
+                          backdrop-blur-2xl border border-emerald-500/30
+                          shadow-[0_0_15px_rgba(16,185,129,0.15)]
+                          hover:shadow-[0_0_25px_rgba(16,185,129,0.3)]
+                          transition-all duration-300"
+              >
+                <span className="group-hover:text-emerald-300 transition-colors text-lg">
+                  View My Work
+                </span>
+                <IoMdArrowForward className="text-emerald-300 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
               </a>
             </div>
           </div>

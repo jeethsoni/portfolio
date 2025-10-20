@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff; /* fixed to white */
-  --foreground: #171717; /* dark gray text */
+  --background: #0a0a0a;   /* deep gray (tailwind gray-950-ish) */
+  --foreground: #fafafa;   /* near-white text */
+  color-scheme: dark;      /* tell the browser we are dark-only */
 }
 
 

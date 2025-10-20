@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { AuroraText } from "./ui/aurora-text";
 
-// Only the icons you actually use per project:
+// icon imports
 import NextjsOriginal from "devicons-react/icons/NextjsOriginal";
 import ReactOriginal from "devicons-react/icons/ReactOriginal";
 import TailwindcssOriginal from "devicons-react/icons/TailwindcssOriginal";
@@ -80,7 +80,7 @@ const SAMPLE_PROJECTS = [
     iconMap: {
       Flask: FlaskOriginal,
       PostgreSQL: PostgresqlOriginal,
-      Pydantic: PythonOriginal, // explicit choice for this project
+      Pydantic: PythonOriginal, 
       PyTest: PytestOriginal,
       Swagger: SwaggerOriginal,
     },
@@ -200,7 +200,6 @@ function Modal({ open, onClose, project }) {
           </p>
         </div>
 
-        {/* Scrollable body */}
         <div className="overflow-y-auto">
           {project.image ? (
             <div className="w-full relative bg-white/5">
