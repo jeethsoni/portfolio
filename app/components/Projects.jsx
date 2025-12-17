@@ -7,7 +7,7 @@ import { AuroraText } from "./ui/aurora-text";
 import NextjsOriginal from "devicons-react/icons/NextjsOriginal";
 import ReactOriginal from "devicons-react/icons/ReactOriginal";
 import TailwindcssOriginal from "devicons-react/icons/TailwindcssOriginal";
-import { FramerDark } from "developer-icons";
+import { FramerDark, Go } from "developer-icons";
 import ArduinoOriginal from "devicons-react/icons/ArduinoOriginal";
 import CplusplusOriginal from "devicons-react/icons/CplusplusOriginal";
 import GitOriginal from "devicons-react/icons/GitOriginal";
@@ -16,10 +16,40 @@ import PostgresqlOriginal from "devicons-react/icons/PostgresqlOriginal";
 import PythonOriginal from "devicons-react/icons/PythonOriginal";
 import PytestOriginal from "devicons-react/icons/PytestOriginal";
 import SwaggerOriginal from "devicons-react/icons/SwaggerOriginal";
+import GolandOriginal from 'devicons-react/icons/GolandOriginal';
 import { MdOutlineSensors } from "react-icons/md";
+import { SiOllama } from "react-icons/si";
+import BashOriginal from 'devicons-react/icons/BashOriginal';
 
 
-const SAMPLE_PROJECTS = [
+
+
+const FEATURED_PROJECTS = [
+  {
+    id: "devgod",
+    title: "Devgod CLI",
+    description:
+      "A developer productivity CLI that turns natural-language intent into structured Git workflows. Devgod acts as a control layer over Git, guiding developers through branch creation, commits, and pull requests with best practices and local AI assistance.",
+    image: "/projects/devgod-cli.png",
+    year: 2025,
+    stack: ["Go", "Cobra", "Git", "Ollama"],
+    iconMap: {
+      Go: GolandOriginal,
+      Cobra: BashOriginal,
+      Git: GitOriginal,
+      Ollama: SiOllama,
+    },
+    bullets: [
+      "Built a Go-based CLI that generates standardized Git branch names from user intent.",
+      "Implemented diff-aware commit message generation to improve commit clarity and consistency.",
+      "Integrated local AI inference using Ollama to keep workflows fast and private.",
+      "Automated pull request creation with guided prompts to reduce review friction.",
+    ],
+    links: {
+      repo: "https://github.com/jeethsoni/devgod-cli",
+    },
+  },
+
   {
     id: "portfolio",
     title: "Personal Portfolio",
@@ -49,7 +79,7 @@ const SAMPLE_PROJECTS = [
     id: "forher",
     title: "ForHer",
     description:
-        "An IoT-enabled toilet seat cleaner built with Arduino and ultrasonic sensors for automated, contact-free hygiene. Designed with 95% detection accuracy and servo-driven motion to enhance sanitation and accessibility for women.",
+      "An IoT-enabled toilet seat cleaner built with Arduino and ultrasonic sensors for automated, contact-free hygiene. Designed with 95% detection accuracy and servo-driven motion to enhance sanitation and accessibility for women.",
     image: "/projects/forher.png",
     year: 2025,
     stack: ["Arduino", "C++", "git", "Sensors"],
@@ -80,7 +110,7 @@ const SAMPLE_PROJECTS = [
     iconMap: {
       Flask: FlaskOriginal,
       PostgreSQL: PostgresqlOriginal,
-      Pydantic: PythonOriginal, 
+      Pydantic: PythonOriginal,
       PyTest: PytestOriginal,
       Swagger: SwaggerOriginal,
     },
@@ -98,14 +128,22 @@ const SAMPLE_PROJECTS = [
   },
 ];
 
+const FORCE_BLACK_ICONS = new Set(["Ollama", "Sensors"]);
+
+
 function TechCircle({ title, Icon }) {
+  const forceBlack = FORCE_BLACK_ICONS.has(title);
+
   return (
     <div
       className="inline-flex size-8 items-center justify-center rounded-full ring-2 ring-gray-800 outline -outline-offset-1 outline-white/10 bg-gray-200"
       title={title}
       aria-label={title}
     >
-      <Icon size={28} />
+      <Icon
+        size={28}
+        style={forceBlack ? { color: "#000000" } : {}}
+      />
     </div>
   );
 }
@@ -256,7 +294,7 @@ function Modal({ open, onClose, project }) {
   );
 }
 
-export default function Projects({ items = SAMPLE_PROJECTS }) {
+export default function Projects({ items = FEATURED_PROJECTS }) {
   const data = useMemo(() => items.filter(Boolean), [items]);
   const [selected, setSelected] = useState(null);
 
