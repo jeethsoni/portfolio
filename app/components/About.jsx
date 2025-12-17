@@ -44,7 +44,8 @@ import SpringOriginal from "devicons-react/icons/SpringOriginal";
 import SwaggerOriginal from "devicons-react/icons/SwaggerOriginal";
 import TailwindcssOriginal from "devicons-react/icons/TailwindcssOriginal";
 import VscodeOriginal from "devicons-react/icons/VscodeOriginal";
-import { Zod, ExpressJsLight, GitHubLight } from "developer-icons";
+import GolandOriginal from 'devicons-react/icons/GolandOriginal';
+import { Zod, ExpressJsLight, GitHubLight, Go } from "developer-icons";
 import { Smartphone } from 'lucide-react';
 
 
@@ -138,6 +139,7 @@ export default function About() {
                       { icon: <NpmOriginal size={20} className="inline-block mr-1" />, label: "npm" },
                       { icon: <PostmanOriginal size={20} className="inline-block mr-1" />, label: "Postman" },
                       { icon: <VscodeOriginal size={20} className="inline-block mr-1" />, label: "VS Code" },
+
                     ].map((item, i) => (
                       <span
                         key={`r2-${i}`}
@@ -255,7 +257,7 @@ export default function About() {
             </div>
           </SpotlightCard>
 
-            
+
 
           <SpotlightCard
             className="
@@ -272,6 +274,7 @@ export default function About() {
                 <PythonOriginal size="30" />
                 <JavascriptOriginal size="25" />
                 <JavaOriginalWordmark size="40" />
+                <GolandOriginal size="30" />
               </OrbitingCircles>
               <OrbitingCircles radius={110} reverse>
                 <CplusplusOriginal size="30" />
@@ -299,44 +302,44 @@ export default function About() {
               </h3>
             </div>
             <div className="-mx-4 sm:-mx-5 md:-mx-6 opacity-20">
-            <Marquee className="w-full [--duration:36s] [--gap:0.5rem]">
-              {[
-                {
-                  icon: <Smartphone size={30} className="text-white" />,
-                  heading: "Stay tuned",
-                  sub: "A new app is in the works"
-                }
-              ].map((item, i) => (
-                <span
-                  key={`r1-${i}`}
-                  className="flex flex-col items-center justify-center text-center
+              <Marquee className="w-full [--duration:36s] [--gap:0.5rem]">
+                {[
+                  {
+                    icon: <Smartphone size={30} className="text-white" />,
+                    heading: "Stay tuned",
+                    sub: "A new app is in the works"
+                  }
+                ].map((item, i) => (
+                  <span
+                    key={`r1-${i}`}
+                    className="flex flex-col items-center justify-center text-center
                             rounded-2xl bg-white/5 p-4 
                             w-40 sm:w-56 md:w-64
                             text-white/70 whitespace-normal break-words"
-                >
-                  <div className="mb-2">{item.icon}</div>
-                  <p className="text-sm sm:text-base md:text-lg font-semibold text-white">
-                    {item.heading}
-                  </p>
-                  <p className="text-xs sm:text-sm text-white/60">
-                    {item.sub}
-                  </p>
-                </span>
-              ))}
-            </Marquee>
-          </div>
-          <div className="mt-4 flex flex-col items-center text-center">
-            <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-white/50">
-              Early Stages
-            </p>
-            <div className="mt-2 w-40 h-2 bg-white/10 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-emerald-400 to-cyan-500 animate-pulse w-1/3 rounded-full" />
+                  >
+                    <div className="mb-2">{item.icon}</div>
+                    <p className="text-sm sm:text-base md:text-lg font-semibold text-white">
+                      {item.heading}
+                    </p>
+                    <p className="text-xs sm:text-sm text-white/60">
+                      {item.sub}
+                    </p>
+                  </span>
+                ))}
+              </Marquee>
             </div>
-          </div>
+            <div className="mt-4 flex flex-col items-center text-center">
+              <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-white/50">
+                Early Stages
+              </p>
+              <div className="mt-2 w-40 h-2 bg-white/10 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-emerald-400 to-cyan-500 animate-pulse w-1/3 rounded-full" />
+              </div>
+            </div>
 
-          <p className="mt-4 text-center text-sm sm:text-base italic text-fuchsia-400">
-            Built with passion. Shared when ready.
-          </p>
+            <p className="mt-4 text-center text-sm sm:text-base italic text-fuchsia-400">
+              Built with passion. Shared when ready.
+            </p>
           </SpotlightCard>
         </div>
       </div>
