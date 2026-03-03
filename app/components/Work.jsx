@@ -57,7 +57,7 @@ export default function Work() {
         >
           <div className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-white/90 font-serif">
             My professional {" "}
-          <AuroraText >Journey</AuroraText>
+            <AuroraText >Journey</AuroraText>
           </div>
           <p className="mt-3 text-base md:text-lg text-gray-300/90 font-serif">
             A timeline of my work experience and milestones
@@ -143,7 +143,7 @@ export default function Work() {
               <>
                 Software Developer Intern <br /> <span className="italic text-cyan-50 md:text-2xl text-xl">Codejockey.io</span>
               </>
-            }            
+            }
             content={
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
