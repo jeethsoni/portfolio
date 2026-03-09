@@ -81,7 +81,7 @@ export default function Navbar() {
                 <button
                   onClick={() => scrollToId(l.id)}
                   className={`px-3 py-1 rounded-full transition-colors duration-200
-                  ${active ? "bg-blue-600/80 text-white" : "hover:bg-white/15"}`}
+                  ${active ? "bg-[rgb(82,39,255)] text-white" : "hover:bg-white/15"}`}
                   aria-current={active ? "page" : undefined}
                 >
                   {l.label}

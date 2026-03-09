@@ -5,45 +5,52 @@ import Work from "./components/Work";
 import Projects from "./components/Projects";
 import Blog from "./components/Blog";
 import Contact from "./components/Contact";
-
-import { ShootingStars } from "./components/reactbits/backgrounds/shooting-stars";
-import { StarsBackground } from "./components/reactbits/backgrounds/stars-background";
+import Aurora from "./components/reactbits/backgrounds/Aurora";
 
 export default function Home() {
   return (
     <div className="relative">
 
-      {/* Home */}
-      <section id="home" className="scroll-mt-24 min-h-screen mb-36">
-        <ShootingStars className="fixed inset-0 -z-10 pointer-events-none" />
-        <StarsBackground className="fixed inset-0 -z-10 pointer-events-none" />
+      {/* HEADER */}
+      <section id="home" className="relative min-h-screen overflow-hidden">
+
+        {/* Aurora only inside header */}
+        <div className="absolute inset-0 -z-10">
+          <Aurora
+            colorStops={["#7cff67", "#B19EEF", "#5227FF"]}
+            blend={0.5}
+            amplitude={1.0}
+            speed={1}
+          />
+        </div>
+
         <Header />
       </section>
 
-      {/* About */}
-      <section id="about" className="scroll-mt-24 mb-36">
-        <About />
-      </section>
+      {/* REST OF SITE */}
+      <div className="bg-[color:color-mix(in_oklab,var(--muted)_50%,transparent)]">
 
-      {/* Work */}
-      <section id="work" className="scroll-mt-24 mb-36">
-        <Work />
-      </section>
+        <section id="about" className="py-36">
+          <About />
+        </section>
 
-      {/* Projects */}
-      <section id="projects" className="scroll-mt-24 mb-36">
-        <Projects />
-      </section>
+        <section id="work" className="py-36">
+          <Work />
+        </section>
 
-      {/* Blog */}
-      <section id="blog" className="scroll-mt-24 mb-36">
-        <Blog />
-      </section>
+        <section id="projects" className="py-36">
+          <Projects />
+        </section>
 
-      {/* Contact */}
-      <section id="contact" className="scroll-mt-24">
-        <Contact />
-      </section>
+        <section id="blog" className="py-36">
+          <Blog />
+        </section>
+
+        <section id="contact" className="py-36">
+          <Contact />
+        </section>
+
+      </div>
     </div>
   );
 }
