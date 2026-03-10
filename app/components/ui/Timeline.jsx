@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion" // use "framer-motion" if not on v11
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export const Timeline = ({ data = [], children }) => {
   const items = useMemo(() => {
@@ -54,10 +54,7 @@ export const Timeline = ({ data = [], children }) => {
   const hasItems = items && items.length > 0;
 
   return (
-    <div
-      className="w-full bg-transparent font-sans"
-      ref={containerRef}
-    >
+    <div className="w-full bg-transparent font-sans" ref={containerRef}>
       <div ref={ref} className="relative mx-auto pb-20">
         {!hasItems ? (
           <div className="px-2 text-neutral-500 dark:text-neutral-400">
@@ -67,28 +64,22 @@ export const Timeline = ({ data = [], children }) => {
           items.map((item, index) => (
             <div
               key={index}
-              className="flex justify-start pt-10 md:pt-40 md:gap-10"
+              className="flex justify-start pt-10 md:pt-32 md:gap-10"
             >
-              <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-                <div className="h-10 absolute left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
-                  <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
+              <div className="sticky top-40 z-40 flex max-w-xs self-start md:w-full md:max-w-sm flex-col items-center md:flex-row">
+                <div className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-black">
+                  <div className="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200 p-2 dark:border-neutral-700 dark:bg-neutral-800" />
                 </div>
-                <h3 className="hidden md:block text-2xl md:pl-20 md:text-3xl font-bold 
-                              bg-clip-text text-transparent 
-                              bg-gradient-to-r from-cyan-300 via-sky-300 to-emerald-200
-                              drop-shadow-[0_0_10px_rgba(56,189,248,0.25)]" >
+
+                <div className="hidden md:block md:pl-20">
                   {item?.title ?? ""}
-                </h3>
+                </div>
               </div>
 
-              <div className="relative pl-20 pr-4 md:pl-4 w-full">
-                <h3 className="md:hidden text-2xl md:pl-20 md:text-3xl font-bold
-             bg-clip-text text-transparent
-             bg-gradient-to-r from-cyan-300 via-sky-300 to-emerald-200
-             drop-shadow-[0_0_10px_rgba(56,189,248,0.25)]
-             [-webkit-text-fill-color:transparent]">
+              <div className="relative w-full pl-20 pr-4 md:pl-4">
+                <div className="md:hidden mb-4">
                   {item?.title ?? ""}
-                </h3>
+                </div>
                 {item?.content ?? null}
               </div>
             </div>
@@ -97,7 +88,7 @@ export const Timeline = ({ data = [], children }) => {
 
         <div
           style={{ height: `${height}px` }}
-          className="absolute left-8 top-0 overflow-hidden w-[2px]
+          className="absolute left-8 top-0 w-[2px] overflow-hidden
                      bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))]
                      from-transparent from-[0%]
                      via-neutral-200 dark:via-neutral-700
@@ -106,9 +97,9 @@ export const Timeline = ({ data = [], children }) => {
         >
           <motion.div
             style={{ height: heightTransform, opacity: opacityTransform }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t
+            className="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t
                        from-purple-500 via-blue-500 to-transparent
-                       from-[0%] via-[10%] rounded-full"
+                       from-[0%] via-[10%]"
           />
         </div>
       </div>
