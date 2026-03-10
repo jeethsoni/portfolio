@@ -9,7 +9,7 @@ import React from "react";
 
 export default function Header() {
   return (
-    <header className="relative min-h-screen overflow-hidden bg-black/60">
+    <header className="relative min-h-screen overflow-hidden">
       {/* Navbar */}
       <div className="absolute top-0 inset-x-0 z-[100]">
         <Navbar />
@@ -65,7 +65,7 @@ export default function Header() {
               <a
                 href="/api/resume"
                 download="Jeet_Soni_Resume.pdf"
-                className="flex items-center gap-2 rounded-xl bg-[#5227FF] px-6 py-3 text-white hover:bg-[#6a45ff] transition-colors"
+                className="flex items-center gap-2 rounded-xl bg-brand px-6 py-3 text-white hover:bg-brand/90 transition-colors"
               >
                 Resume
                 <GoDownload />

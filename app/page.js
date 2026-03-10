@@ -28,25 +28,25 @@ export default function Home() {
       </section>
 
       {/* REST OF SITE */}
-      <div className="bg-[color:color-mix(in_oklab,var(--muted)_50%,transparent)]">
+      <div>
 
-        <section id="about" className="py-36">
+        <section id="about" className="py-16 bg-muted/50">
           <About />
         </section>
 
-        <section id="work" className="py-36">
+        <section id="work" className="py-16">
           <Work />
         </section>
 
-        <section id="projects" className="py-36">
+        <section id="projects" className="py-16 bg-muted/50">
           <Projects />
         </section>
 
-        <section id="blog" className="py-36">
+        <section id="blog" className="py-16">
           <Blog />
         </section>
 
-        <section id="contact" className="py-36">
+        <section id="contact" className="py-16 bg-muted/50">
           <Contact />
         </section>
 

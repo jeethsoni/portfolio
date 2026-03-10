@@ -55,7 +55,7 @@ export const Timeline = ({ data = [], children }) => {
 
   return (
     <div className="w-full bg-transparent font-sans" ref={containerRef}>
-      <div ref={ref} className="relative mx-auto pb-20">
+      <div ref={ref} className="relative mx-auto">
         {!hasItems ? (
           <div className="px-2 text-neutral-500 dark:text-neutral-400">
             No timeline items yet.
@@ -64,7 +64,7 @@ export const Timeline = ({ data = [], children }) => {
           items.map((item, index) => (
             <div
               key={index}
-              className="flex justify-start pt-10 md:pt-32 md:gap-10"
+              className="flex justify-start pt-10 md:pt-10 md:gap-10"
             >
               <div className="sticky top-40 z-40 flex max-w-xs self-start md:w-full md:max-w-sm flex-col items-center md:flex-row">
                 <div className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-black">

@@ -83,19 +83,19 @@ export default function Work() {
   };
 
   return (
-    <section className="bg-black py-16">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="mx-auto w-full max-w-7xl px-4 py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
-          className="mb-12 text-center"
+          className="text-center"
         >
           <h2 className="font-serif text-4xl font-bold tracking-tight text-white md:text-5xl">
             My Professional <AuroraText>Journey</AuroraText>
           </h2>
-          <p className="mt-3 font-serif text-sm text-gray-400 md:text-base">
+          <p className="mt-1 font-serif text-sm text-gray-400 md:text-base">
             A quick look at my recent experience
           </p>
         </motion.div>

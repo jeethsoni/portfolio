@@ -7,7 +7,7 @@ import { AuroraText } from "./ui/aurora-text";
 import NextjsOriginal from "devicons-react/icons/NextjsOriginal";
 import ReactOriginal from "devicons-react/icons/ReactOriginal";
 import TailwindcssOriginal from "devicons-react/icons/TailwindcssOriginal";
-import { FramerDark, Go } from "developer-icons";
+import { FramerDark } from "developer-icons";
 import ArduinoOriginal from "devicons-react/icons/ArduinoOriginal";
 import CplusplusOriginal from "devicons-react/icons/CplusplusOriginal";
 import GitOriginal from "devicons-react/icons/GitOriginal";
@@ -16,13 +16,10 @@ import PostgresqlOriginal from "devicons-react/icons/PostgresqlOriginal";
 import PythonOriginal from "devicons-react/icons/PythonOriginal";
 import PytestOriginal from "devicons-react/icons/PytestOriginal";
 import SwaggerOriginal from "devicons-react/icons/SwaggerOriginal";
-import GolandOriginal from 'devicons-react/icons/GolandOriginal';
+import GolandOriginal from "devicons-react/icons/GolandOriginal";
 import { MdOutlineSensors } from "react-icons/md";
 import { SiOllama } from "react-icons/si";
-import BashOriginal from 'devicons-react/icons/BashOriginal';
-
-
-
+import BashOriginal from "devicons-react/icons/BashOriginal";
 
 const FEATURED_PROJECTS = [
   {
@@ -49,7 +46,6 @@ const FEATURED_PROJECTS = [
       repo: "https://github.com/jeethsoni/devgod-cli",
     },
   },
-
   {
     id: "portfolio",
     title: "Personal Portfolio",
@@ -130,41 +126,37 @@ const FEATURED_PROJECTS = [
 
 const FORCE_BLACK_ICONS = new Set(["Ollama", "Sensors"]);
 
-
 function TechCircle({ title, Icon }) {
   const forceBlack = FORCE_BLACK_ICONS.has(title);
 
   return (
     <div
-      className="inline-flex size-8 items-center justify-center rounded-full ring-2 ring-gray-800 outline -outline-offset-1 outline-white/10 bg-gray-200"
+      className="inline-flex size-8 items-center justify-center rounded-full ring-2 ring-black/30 outline -outline-offset-1 outline-white/10 bg-gray-200"
       title={title}
       aria-label={title}
     >
-      <Icon
-        size={28}
-        style={forceBlack ? { color: "#000000" } : {}}
-      />
+      <Icon size={28} style={forceBlack ? { color: "#000000" } : {}} />
     </div>
   );
 }
 
 function Card({ item, onOpen }) {
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b bg-gray-800 transition-all duration-300">
-      <div className="aspect-[30/26] w-full overflow-hidden bg-white/5 relative">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/20 bg-[#0f0b1f] shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-white/10">
+      <div className="relative aspect-[30/26] w-full overflow-hidden bg-white/5">
         <Image
           src={item.image}
           alt={item.title}
           fill
-          className="object-cover transition-transform duration-500 hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
 
-      <div className="flex flex-1 flex-col justify-between p-4 pb-4 min-h-[320px]">
+      <div className="flex min-h-[320px] flex-1 flex-col justify-between p-4">
         <div>
-          <h3 className="text-xl font-semibold text-blue-400">{item.title}</h3>
-          <p className="mt-3 text-base text-gray-300 leading-relaxed">
+          <h3 className="text-xl font-semibold text-brand">{item.title}</h3>
+          <p className="mt-3 text-base leading-relaxed text-gray-300">
             {item.description}
           </p>
 
@@ -189,16 +181,17 @@ function Card({ item, onOpen }) {
         <div className="mt-8 flex items-center justify-between">
           <button
             onClick={() => onOpen(item)}
-            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-5 py-2 text-sm text-white hover:bg-white/20 transition"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-5 py-2 text-sm text-white transition hover:bg-white/20"
           >
             View Details →
           </button>
+
           {item.links?.live ? (
             <a
               href={item.links.live}
               target="_blank"
               rel="noreferrer"
-              className="text-sm text-gray-300 hover:text-white"
+              className="text-sm text-gray-300 transition hover:text-white"
               title="Open Live"
             >
               Live ↗
@@ -219,28 +212,26 @@ function Modal({ open, onClose, project }) {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3"
-    >
-      <div className="relative w-full max-w-3xl rounded-2xl border border-white/10 bg-gray-800 flex flex-col max-h-[90vh]">
-        {/* Header */}
-        <div className="top-0 z-10 bg-gray-800 border-b border-white/10 p-5 relative">
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm pt-20 p-3"    >
+      <div className="relative w-full max-w-3xl rounded-2xl border border-white/5 bg-[#0f0b1f] shadow-[0_8px_30px_rgba(0,0,0,0.25)] flex flex-col max-h-[90vh]">
+        <div className="relative border-b border-white/10 bg-white/5 p-5">
           <button
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-2 top-5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-red-500"
+            className="absolute right-2 top-5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-red-400"
           >
             Close
           </button>
 
-          <h2 className="text-xl font-bold text-emerald-500">{project.title}</h2>
-          <p className="mt-2 text-sm text-gray-300 leading-relaxed">
+          <h2 className="text-xl font-bold text-brand">{project.title}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-gray-300">
             {project.description}
           </p>
         </div>
 
         <div className="overflow-y-auto">
           {project.image ? (
-            <div className="w-full relative bg-white/5">
+            <div className="relative w-full bg-white/5">
               <div className="relative aspect-[16/9]">
                 <Image
                   src={project.image}
@@ -264,15 +255,14 @@ function Modal({ open, onClose, project }) {
           ) : null}
         </div>
 
-        {/* Footer */}
         {(project.links?.repo || project.links?.live) && (
-          <div className="sticky bottom-0 bg-gray-800 border-t border-white/10 flex flex-wrap gap-3 p-5">
+          <div className="sticky bottom-0 flex flex-wrap gap-3 border-t border-white/10 bg-white/5 p-5 backdrop-blur-md">
             {project.links?.repo && (
               <a
                 href={project.links.repo}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-200 hover:bg-cyan-500/20 transition"
+                className="inline-flex items-center gap-2 rounded-xl border border-brand/30 bg-brand px-4 py-2 text-sm text-white transition hover:bg-brand/90"
               >
                 Repo
               </a>
@@ -282,7 +272,7 @@ function Modal({ open, onClose, project }) {
                 href={project.links.live}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-200 hover:bg-emerald-500/20 transition"
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500 px-4 py-2 text-sm text-white transition hover:bg-emerald-400"
               >
                 Live Demo
               </a>
@@ -299,12 +289,12 @@ export default function Projects({ items = FEATURED_PROJECTS }) {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-12">
-      <div className="mb-8 text-center font-serif">
+    <section className="mx-auto w-full max-w-7xl px-4 py-16">
+      <div className="-mt-10 mb-8 text-center font-serif">
         <h2 className="text-5xl font-bold text-white/90">
           Featured <AuroraText>Projects</AuroraText>
         </h2>
-        <p className="mt-2 text-md text-gray-300">
+        <p className="mt-1 text-md text-gray-300">
           Check out some of my recent work.
         </p>
       </div>
