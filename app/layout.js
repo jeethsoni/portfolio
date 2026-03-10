@@ -2,6 +2,7 @@ import { Work_Sans, DM_Sans, Sora, Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 // Fonts
 const workSans = Work_Sans({ subsets: ["latin"], variable: "--font-sans" });
@@ -23,6 +24,8 @@ export default function RootLayout({ children }) {
       <body className={`${workSans.variable} ${dmSans.variable} ${inter.variable} ${bebasNeue.variable} antialiased relative bg-gray-950`}>
         <Navbar />
         {children}
+
+        <Footer />
       </body>
     </html>
   );
