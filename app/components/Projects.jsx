@@ -142,7 +142,7 @@ function TechCircle({ title, Icon }) {
 
 function Card({ item, onOpen }) {
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/20 bg-[#0f0b1f] shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-white/10">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f0b1f] shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-white/10">
       <div className="relative aspect-[30/26] w-full overflow-hidden bg-white/5">
         <Image
           src={item.image}

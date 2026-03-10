@@ -185,7 +185,7 @@ function TechStackTabs() {
 export default function About() {
   return (
     <section id="about" className="relative py-16 md:py-20 text-white">
-      <div className="absolute inset-0 -z-10 pointer-events-none bg-linear-to-b from-black/10 via-black/0 to-black/10" />
+      <div className="absolute inset-0 -z-10" />
 
       <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
         <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-6 lg:auto-rows-[19rem]">         {/* CARD 1 */}

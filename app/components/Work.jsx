@@ -121,8 +121,7 @@ export default function Work() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.45, delay: index * 0.05 }}
                 >
-                  <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.03] p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_20px_80px_-20px_rgba(0,0,0,0.65)] md:p-7">
-                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.10),transparent_30%)] opacity-70" />
+                  <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-[#0f0b1f] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.25)] md:p-7">                    <div className="pointer-events-none absolute inset-0" />
 
                     <div className="relative z-10">
                       <div className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-start sm:justify-between">

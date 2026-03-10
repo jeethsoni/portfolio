@@ -42,7 +42,7 @@ const SpotlightCard = ({ children, className = '', spotlightColor = 'rgba(255, 2
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`group relative flex size-full flex-col justify-between overflow-hidden 
-              rounded-xl border border-white/5 bg-[#0f0b1f] shadow-[0_8px_30px_rgba(0,0,0,0.25)] 
+              rounded-xl border border-white/10 bg-[#0f0b1f] shadow-[0_8px_30px_rgba(0,0,0,0.25)] 
               transform-gpu p-6 sm:p-8 ${className}`}
     >
       <div

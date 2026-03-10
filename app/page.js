@@ -12,7 +12,7 @@ export default function Home() {
     <div className="relative">
 
       {/* HEADER */}
-      <section id="home" className="relative min-h-screen overflow-hidden">
+      <section id="home" className="relative min-h-screen overflow-hidden bg-black/60">
 
         {/* Aurora only inside header */}
         <div className="absolute inset-0 -z-10">
@@ -34,7 +34,7 @@ export default function Home() {
           <About />
         </section>
 
-        <section id="work" className="py-16">
+        <section id="work" className="py-16 bg-black/60">
           <Work />
         </section>
 
@@ -42,7 +42,7 @@ export default function Home() {
           <Projects />
         </section>
 
-        <section id="blog" className="py-16">
+        <section id="blog" className="py-16 bg-black/60">
           <Blog />
         </section>
 
