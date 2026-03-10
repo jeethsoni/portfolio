@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { MapPin, CalendarDays } from "lucide-react";
-import { Timeline } from "./ui/Timeline";
 import { AuroraText } from "./ui/aurora-text";
+import { Briefcase } from "lucide-react";
 import {
   Zod,
   ExpressJsLight,
@@ -15,7 +15,11 @@ import {
   Git,
   Jira,
 } from "developer-icons";
-import { PytestOriginal, SqlalchemyOriginal, MongooseOriginal } from "devicons-react";
+import {
+  PytestOriginal,
+  SqlalchemyOriginal,
+  MongooseOriginal,
+} from "devicons-react";
 import JwtIcon from "./ui/icons/JwtIcon";
 
 const SkillChip = ({ icon, children }) => (
@@ -46,6 +50,7 @@ const workExperience = [
       "Git",
       "Jira",
     ],
+    logo: "S",
   },
   {
     company: "CodePremi",
@@ -55,9 +60,10 @@ const workExperience = [
     bullets: [
       "Spearheaded development of scalable FastAPI endpoints with PostgreSQL, reducing request latency by 22% and improving API throughput.",
       "Refactored raw SQL queries into SQLAlchemy ORM and implemented JWT authentication with unit tests, achieving 85% coverage and strengthening system stability.",
-      "Collaborated directly with the founder to develop and deploy new backend features, gaining hands-on experience in product decision-making and rapid iteration",
+      "Collaborated directly with the founder to develop and deploy new backend features, gaining hands-on experience in product decision-making and rapid iteration.",
     ],
     stack: ["Python", "FastAPI", "SQLAlchemy", "JWT", "Pytest", "Git"],
+    logo: "C",
   },
 ];
 
@@ -96,69 +102,74 @@ export default function Work() {
           </p>
         </motion.div>
 
-        <Timeline>
-          {workExperience.map((job, index) => (
-            <Timeline.Item
-              key={job.company}
-              title={
-                <div className="space-y-1">
-                  <h3 className="font-serif text-2xl font-bold text-brand md:text-3xl">
-                    {job.role}
-                  </h3>
-                  <p className="text-lg font-medium italic text-white md:text-xl">
-                    {job.company}
-                  </p>
+        <div className="relative mt-14">
+          {/* vertical line */}
+          <div className="absolute left-5 top-0 h-full w-px bg-white/10 sm:left-7" />
+
+          <div className="space-y-10">
+            {workExperience.map((job, index) => (
+              <motion.div
+                key={job.company}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className="relative flex items-start gap-5 sm:gap-6"
+              >
+                {/* logo node */}
+                <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#0f0b1f] text-sm font-semibold text-white shadow-[0_8px_30px_rgba(0,0,0,0.25)] sm:h-14 sm:w-14">
+                  <Briefcase className="h-5 w-5 text-purple-500" />
                 </div>
-              }
-              content={
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.45, delay: index * 0.05 }}
-                >
-                  <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-[#0f0b1f] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.25)] md:p-7">
-                    {" "}
-                    <div className="pointer-events-none absolute inset-0" />
-                    <div className="relative z-10">
-                      <div className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-start sm:justify-between">
-                        <div className="flex flex-wrap gap-2 text-xs text-emerald-400 sm:justify-end">
-                          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                            <CalendarDays className="h-4 w-4" />
-                            <span>{job.date}</span>
-                          </div>
-                          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                            <MapPin className="h-4 w-4" />
-                            <span>{job.location}</span>
-                          </div>
+
+                {/* card */}
+                <div className="group relative w-full overflow-hidden rounded-3xl border border-white/10 bg-[#0f0b1f] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.25)] md:p-7">
+                  <div className="relative z-10">
+                    <div className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <h3 className="font-serif text-2xl font-bold text-brand/80 md:text-3xl">
+                          {job.role}
+                        </h3>
+                        <p className="text-lg font-medium italic text-white md:text-xl">
+                          {job.company}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 text-xs text-white/90 sm:justify-end">
+                        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+                          <CalendarDays className="h-4 w-4" />
+                          <span>{job.date}</span>
+                        </div>
+                        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+                          <MapPin className="h-4 w-4" />
+                          <span>{job.location}</span>
                         </div>
                       </div>
+                    </div>
 
-                      <ul className="mt-5 space-y-3 text-sm leading-6 text-gray-300 md:text-base">
-                        {job.bullets.map((bullet) => (
-                          <li key={bullet} className="flex items-start gap-3">
-                            <span className="mt-[3px] text-sm text-emerald-400 transition-transform duration-300 group-hover:translate-x-0.5">
-                              ➜
-                            </span>
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <ul className="mt-5 space-y-3 text-sm leading-6 text-gray-300 md:text-base">
+                      {job.bullets.map((bullet) => (
+                        <li key={bullet} className="flex items-start gap-3">
+                          <span className="mt-3 text-sm text-emerald-400 transition-transform duration-300 group-hover:translate-x-0.5">
+                            ➜
+                          </span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
 
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {job.stack.map((skill) => (
-                          <SkillChip key={skill} icon={icons[skill]}>
-                            {skill}
-                          </SkillChip>
-                        ))}
-                      </div>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {job.stack.map((skill) => (
+                        <SkillChip key={skill} icon={icons[skill]}>
+                          {skill}
+                        </SkillChip>
+                      ))}
                     </div>
                   </div>
-                </motion.div>
-              }
-            />
-          ))}
-        </Timeline>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

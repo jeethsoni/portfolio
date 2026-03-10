@@ -5,7 +5,7 @@ import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-white/5 bg-black/60 text-white">
+    <footer className="border-t border-white/5 text-white">
       <div className="mx-auto max-w-7xl px-6 py-14">
         {/* Top Grid */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">

@@ -10,9 +10,11 @@ import Aurora from "./components/reactbits/backgrounds/Aurora";
 export default function Home() {
   return (
     <div className="relative">
+
       {/* HEADER */}
-      <section id="home" className="relative min-h-screen overflow-hidden bg-black/60">
-        {/* Aurora only inside header */}
+      <section id="home" className="relative min-h-screen overflow-hidden">
+
+        {/* Aurora background */}
         <div className="absolute inset-0 -z-10">
           <Aurora
             colorStops={["#7cff67", "#B19EEF", "#5227FF"]}
@@ -22,16 +24,21 @@ export default function Home() {
           />
         </div>
 
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/50 -z-5" />
+
         <Header />
+
       </section>
 
       {/* REST OF SITE */}
       <div>
+
         <section id="about" className="py-16 bg-muted/50">
           <About />
         </section>
 
-        <section id="work" className="py-16 bg-black/60">
+        <section id="work" className="py-16 ">
           <Work />
         </section>
 
@@ -39,13 +46,14 @@ export default function Home() {
           <Projects />
         </section>
 
-        <section id="blog" className="py-16 bg-black/60">
+        <section id="blog" className="py-16">
           <Blog />
         </section>
 
         <section id="contact" className="py-16 bg-muted/50">
           <Contact />
         </section>
+
       </div>
     </div>
   );
