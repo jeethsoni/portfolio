@@ -42,11 +42,15 @@ export default function CrossfadeSlideshow({
             transition={{ duration: fadeMs / 1000 }}
           >
             <Image
-              src={curr.src}                                 
+              src={curr.src}
               alt={curr.alt ?? curr.caption ?? "gallery"}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1280px) 80vw, 800px"
-              className={curr.fit === "contain" ? "object-contain rounded-2xl" : "object-cover rounded-2xl"}
+              className={
+                curr.fit === "contain"
+                  ? "object-contain rounded-2xl"
+                  : "object-cover rounded-2xl"
+              }
               style={{
                 objectPosition: curr.objectPos || "center",
               }}

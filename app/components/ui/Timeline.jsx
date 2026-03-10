@@ -10,19 +10,14 @@ export const Timeline = ({ data = [], children }) => {
       .map((child) => {
         if (!React.isValidElement(child)) return null;
         const { title, date, description, content } = child.props || {};
-        const node =
-          content ?? (
-            <div className="space-y-2">
-              {date && (
-                <p className="text-xs md:text-sm text-neutral-400">{date}</p>
-              )}
-              {description && (
-                <p className="text-neutral-700 dark:text-neutral-200">
-                  {description}
-                </p>
-              )}
-            </div>
-          );
+        const node = content ?? (
+          <div className="space-y-2">
+            {date && <p className="text-xs md:text-sm text-neutral-400">{date}</p>}
+            {description && (
+              <p className="text-neutral-700 dark:text-neutral-200">{description}</p>
+            )}
+          </div>
+        );
         return { title, content: node };
       })
       .filter(Boolean);
@@ -62,24 +57,17 @@ export const Timeline = ({ data = [], children }) => {
           </div>
         ) : (
           items.map((item, index) => (
-            <div
-              key={index}
-              className="flex justify-start pt-10 md:pt-10 md:gap-10"
-            >
+            <div key={index} className="flex justify-start pt-10 md:pt-10 md:gap-10">
               <div className="sticky top-40 z-40 flex max-w-xs self-start md:w-full md:max-w-sm flex-col items-center md:flex-row">
                 <div className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-black">
                   <div className="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200 p-2 dark:border-neutral-700 dark:bg-neutral-800" />
                 </div>
 
-                <div className="hidden md:block md:pl-20">
-                  {item?.title ?? ""}
-                </div>
+                <div className="hidden md:block md:pl-20">{item?.title ?? ""}</div>
               </div>
 
               <div className="relative w-full pl-20 pr-4 md:pl-4">
-                <div className="md:hidden mb-4">
-                  {item?.title ?? ""}
-                </div>
+                <div className="md:hidden mb-4">{item?.title ?? ""}</div>
                 {item?.content ?? null}
               </div>
             </div>

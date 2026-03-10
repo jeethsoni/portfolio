@@ -11,10 +11,7 @@
   color-scheme: dark;
 }
 
-
-
 @keyframes handshake {
-
   0%,
   100% {
     transform: rotate(0deg) scale(1);
@@ -69,11 +66,13 @@
 
 @keyframes orbit {
   0% {
-    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px))
+      rotate(calc(var(--angle) * -1deg));
   }
 
   100% {
-    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    transform: rotate(calc(var(--angle) * 1deg + 360deg))
+      translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
   }
 }
 
@@ -138,8 +137,6 @@ html {
   scroll-behavior: smooth;
 }
 
-
-
 /* Map your custom fonts to Tailwind tokens */
 @theme inline {
   --color-background: var(--background);
@@ -166,7 +163,7 @@ html {
 }
 
 @theme {
-  --color-brand: #5227FF;
+  --color-brand: #5227ff;
 }
 
 body {

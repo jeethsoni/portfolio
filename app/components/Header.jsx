@@ -56,9 +56,9 @@ export default function Header() {
             </h2>
 
             <p className="mt-4 max-w-2xl text-white/80 text-base leading-relaxed sm:text-lg">
-              Full-Stack Developer focused on building scalable, production-ready
-              web applications. Experienced in designing clean backend systems
-              and intuitive user interfaces using Python, Java, JavaScript, and SQL.
+              Full-Stack Developer focused on building scalable, production-ready web
+              applications. Experienced in designing clean backend systems and intuitive
+              user interfaces using Python, Java, JavaScript, and SQL.
             </p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-4 lg:justify-start">

@@ -1,7 +1,10 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
 
-export default function useScrollSpy(sectionIds, { rootMargin = "-40% 0px -55% 0px" } = {}) {
+export default function useScrollSpy(
+  sectionIds,
+  { rootMargin = "-40% 0px -55% 0px" } = {}
+) {
   const [activeId, setActiveId] = useState(sectionIds?.[0] ?? null);
   const ids = useMemo(() => (sectionIds || []).filter(Boolean), [sectionIds]);
 

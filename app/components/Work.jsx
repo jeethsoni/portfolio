@@ -15,11 +15,7 @@ import {
   Git,
   Jira,
 } from "developer-icons";
-import {
-  PytestOriginal,
-  SqlalchemyOriginal,
-  MongooseOriginal,
-} from "devicons-react";
+import { PytestOriginal, SqlalchemyOriginal, MongooseOriginal } from "devicons-react";
 import JwtIcon from "./ui/icons/JwtIcon";
 
 const SkillChip = ({ icon, children }) => (
@@ -38,7 +34,7 @@ const workExperience = [
     bullets: [
       "Engineered Express.js microservices with MongoDB, improving backend data processing and query efficiency across production API workflows.",
       "Devised and deployed Zod-based validation middleware and optimized MongoDB schemas and indexes, reducing data inconsistencies by 40%.",
-      "Contributed during Agile sprints and planning cycles to strengthen delivery consistency and team performance."
+      "Contributed during Agile sprints and planning cycles to strengthen delivery consistency and team performance.",
     ],
     stack: [
       "JavaScript",
@@ -59,7 +55,7 @@ const workExperience = [
     bullets: [
       "Spearheaded development of scalable FastAPI endpoints with PostgreSQL, reducing request latency by 22% and improving API throughput.",
       "Refactored raw SQL queries into SQLAlchemy ORM and implemented JWT authentication with unit tests, achieving 85% coverage and strengthening system stability.",
-      "Collaborated directly with the founder to develop and deploy new backend features, gaining hands-on experience in product decision-making and rapid iteration"
+      "Collaborated directly with the founder to develop and deploy new backend features, gaining hands-on experience in product decision-making and rapid iteration",
     ],
     stack: ["Python", "FastAPI", "SQLAlchemy", "JWT", "Pytest", "Git"],
   },
@@ -121,11 +117,11 @@ export default function Work() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.45, delay: index * 0.05 }}
                 >
-                  <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-[#0f0b1f] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.25)] md:p-7">                    <div className="pointer-events-none absolute inset-0" />
-
+                  <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-[#0f0b1f] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.25)] md:p-7">
+                    {" "}
+                    <div className="pointer-events-none absolute inset-0" />
                     <div className="relative z-10">
                       <div className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-start sm:justify-between">
-
                         <div className="flex flex-wrap gap-2 text-xs text-emerald-400 sm:justify-end">
                           <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
                             <CalendarDays className="h-4 w-4" />

@@ -6,7 +6,6 @@
 [![React](https://img.shields.io/badge/React-20232a?logo=react&logoColor=61dafb)](https://react.dev/)
 [![Framer Motion](https://img.shields.io/badge/Framer%20Motion-FF0050?logo=framer&logoColor=white)](https://www.framer.com/motion/)
 
-
 ## 🪄 **Overview**
 
 Welcome to the source code for my personal developer portfolio — a digital space where design meets code.  
@@ -14,30 +13,25 @@ Built with **Next.js**, **React**, and **TailwindCSS**, this site reflects my jo
 
 ✨ **Live Demo:** [**https://www.justdev.com**](https://www.justdev.com)
 
-
 ## 🚀 Tech Stack
 
-| Category | Tools / Frameworks |
-|-----------|-------------------|
-| **Frontend** | Next.js 15, React 18, TypeScript |
-| **Styling** | TailwindCSS v4, Framer Motion |
-| **UI Components** | Reactbits, Aceternity UI, Lucide Icons |
-| **Hosting** | Vercel (with GitHub CI/CD) |
-| **Other** | Dynamic imports, Responsive design, Optimized build configs |
-
-
+| Category          | Tools / Frameworks                                          |
+| ----------------- | ----------------------------------------------------------- |
+| **Frontend**      | Next.js 15, React 18, TypeScript                            |
+| **Styling**       | TailwindCSS v4, Framer Motion                               |
+| **UI Components** | Reactbits, Aceternity UI, Lucide Icons                      |
+| **Hosting**       | Vercel (with GitHub CI/CD)                                  |
+| **Other**         | Dynamic imports, Responsive design, Optimized build configs |
 
 ## ✨ Features
 
-- 🖥️ **Modern UI** with soft gradients, blurred glass effects, and motion transitions  
-- ⚡ **Blazing-fast performance** via Next.js optimization and static generation  
-- 📱 **Fully responsive** — optimized for desktop, tablet, and mobile  
-- 🧠 **Interactive sections** – about, work, projects, blog, and contact  
-- 🧩 **Custom components** for dynamic cards, hover effects, and Aurora text glow  
-- 🔗 **Auto-deploy pipeline** with GitHub → Vercel integration  
+- 🖥️ **Modern UI** with soft gradients, blurred glass effects, and motion transitions
+- ⚡ **Blazing-fast performance** via Next.js optimization and static generation
+- 📱 **Fully responsive** — optimized for desktop, tablet, and mobile
+- 🧠 **Interactive sections** – about, work, projects, blog, and contact
+- 🧩 **Custom components** for dynamic cards, hover effects, and Aurora text glow
+- 🔗 **Auto-deploy pipeline** with GitHub → Vercel integration
 - 🌐 **Custom domain:** [justdev.com](https://www.justdev.com)
-
-
 
 ## 📸 Screenshot
 
@@ -55,6 +49,5 @@ npm run dev
 Go to http://localhost:3000 to view it in your browser.
 
 ```
-
 
 Made with ❤️ by Jeet Soni

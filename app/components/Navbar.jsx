@@ -24,11 +24,11 @@ const LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = React.useState(false);
-  const toggle = () => setOpen(v => !v);
+  const toggle = () => setOpen((v) => !v);
   const close = () => setOpen(false);
 
   const pendingScrollRef = React.useRef(null);
-  const activeId = useScrollSpy(LINKS.map(l => l.id));
+  const activeId = useScrollSpy(LINKS.map((l) => l.id));
 
   const scrollToId = React.useCallback((id) => {
     const el = document.getElementById(id);
@@ -63,13 +63,12 @@ export default function Navbar() {
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
         {/* Logo */}
-        <button onClick={() => scrollToId("home")} aria-label="Go home" className="flex items-center">
-          <Image
-            src="/JS_dark.png"
-            alt="Logo"
-            width={100}
-            height={100}
-          />
+        <button
+          onClick={() => scrollToId("home")}
+          aria-label="Go home"
+          className="flex items-center"
+        >
+          <Image src="/JS_dark.png" alt="Logo" width={100} height={100} />
         </button>
 
         {/* Desktop links */}
@@ -93,13 +92,31 @@ export default function Navbar() {
 
         {/* Desktop socials */}
         <div className="hidden lg:flex items-center gap-4">
-          <a href="https://www.instagram.com/_jeetsoni" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-300 hover:text-white transition-colors">
+          <a
+            href="https://www.instagram.com/_jeetsoni"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
             <FaInstagram size={22} />
           </a>
-          <a href="https://www.linkedin.com/in/jeet-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-300 hover:text-white transition-colors">
+          <a
+            href="https://www.linkedin.com/in/jeet-dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
             <FaLinkedin size={22} />
           </a>
-          <a href="https://www.github.com/jeethsoni" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-300 hover:text-white transition-colors">
+          <a
+            href="https://www.github.com/jeethsoni"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
             <FaGithub size={22} />
           </a>
         </div>
@@ -117,6 +134,25 @@ export default function Navbar() {
       </nav>
 
       {/* MOBILE DROPDOWN */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={close}
+            className="
+            fixed inset-0
+            z-9997
+            bg-black/40
+            backdrop-blur-sm
+            lg:hidden
+          "
+          />
+        )}
+      </AnimatePresence>
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
@@ -128,13 +164,14 @@ export default function Navbar() {
             transition={{ duration: 0.22 }}
             className="
               fixed inset-x-0
-              z-[9998]
+              z-9998
               top-16 md:top-20
               lg:hidden overflow-hidden
+              px-4 pt-3
             "
           >
-            <div className="w-full border-t border-white/10 bg-white/95 text-black shadow-lg dark:bg-gray-900/95 dark:text-white">
-              <ul className="flex flex-col divide-y divide-gray-200/40 dark:divide-white/10">
+            <div className="mx-auto w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-[#0f0b1f]/95 text-white shadow-[0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl">
+              <ul className="flex flex-col divide-y divide-white/10">
                 {LINKS.map((l) => {
                   const active = activeId === l.id;
                   return (
@@ -146,21 +183,54 @@ export default function Navbar() {
                           pendingScrollRef.current = l.id;
                           close();
                         }}
-                        className={`w-full flex items-center gap-3 px-5 py-3 text-left
-                          ${active ? "bg-white/60 dark:bg-white/10" : "hover:bg-gray-100/70 dark:hover:bg-white/10"}`}
+                        className={`flex w-full items-center gap-3 px-5 py-4 text-left text-sm transition
+                    ${
+                      active
+                        ? "bg-[rgb(82,39,255)]/20 text-white"
+                        : "text-white/80 hover:bg-white/5 hover:text-white"
+                    }`}
                       >
-                        {l.icon} {l.label}
+                        <span className="text-base">{l.icon}</span>
+                        <span>{l.label}</span>
                       </a>
                     </li>
                   );
                 })}
 
-                {/* Social row */}
-                <li className="px-5 py-3">
-                  <div className="flex items-center gap-5">
-                    <a href="https://www.instagram.com/_jeetsoni" target="_blank" rel="noopener noreferrer" aria-label="Instagram" onClick={close} className="hover:opacity-80"><FaInstagram size={22} /></a>
-                    <a href="https://www.linkedin.com/in/jeet-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" onClick={close} className="hover:opacity-80"><FaLinkedin size={22} /></a>
-                    <a href="https://www.github.com/jeethsoni" target="_blank" rel="noopener noreferrer" aria-label="GitHub" onClick={close} className="hover:opacity-80"><FaGithub size={22} /></a>
+                <li className="px-5 py-4">
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="https://www.instagram.com/_jeetsoni"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                      onClick={close}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition hover:bg-white/10 hover:text-white"
+                    >
+                      <FaInstagram size={18} />
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/in/jeet-dev/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      onClick={close}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition hover:bg-white/10 hover:text-white"
+                    >
+                      <FaLinkedin size={18} />
+                    </a>
+
+                    <a
+                      href="https://www.github.com/jeethsoni"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                      onClick={close}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition hover:bg-white/10 hover:text-white"
+                    >
+                      <FaGithub size={18} />
+                    </a>
                   </div>
                 </li>
               </ul>

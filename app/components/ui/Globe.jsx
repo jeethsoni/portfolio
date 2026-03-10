@@ -1,7 +1,7 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import createGlobe from 'cobe';
-import { cn } from '@/lib/utils';
+"use client";
+import React, { useEffect, useRef } from "react";
+import createGlobe from "cobe";
+import { cn } from "@/lib/utils";
 
 const Globe = ({
   className,
@@ -14,7 +14,7 @@ const Globe = ({
   baseColor = [0.4, 0.6509, 1],
   markerColor = [1, 0, 0],
   glowColor = [0.2745, 0.5765, 0.898],
-  autoRotateSpeed = 0.12, 
+  autoRotateSpeed = 0.12,
 }) => {
   const canvasRef = useRef(null);
   const globeRef = useRef(null);
@@ -35,7 +35,7 @@ const Globe = ({
       const parent = canvas.parentElement || document.body;
       const dpr = window.devicePixelRatio || 1;
       const w = Math.max(1, parent.clientWidth || 300);
-      const h = w; 
+      const h = w;
       canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       canvas.style.width = `${w}px`;
@@ -65,10 +65,13 @@ const Globe = ({
         const parent = canvas.parentElement || document.body;
         const dpr = window.devicePixelRatio || 1;
         const w = Math.max(1, parent.clientWidth || 300);
-        const H = Math.round(w * dpr), W = H;
+        const H = Math.round(w * dpr),
+          W = H;
         if (state.width !== W || state.height !== H) {
-          state.width = W; state.height = H;
-          canvas.width = W; canvas.height = H;
+          state.width = W;
+          state.height = H;
+          canvas.width = W;
+          canvas.height = H;
         }
 
         const now = performance.now();
@@ -86,27 +89,30 @@ const Globe = ({
 
     globeRef.current = globe;
 
-    const speed = 0.005; 
+    const speed = 0.005;
     const onDown = (x, y) => {
       draggingRef.current = true;
       lastXRef.current = x;
       lastYRef.current = y;
-      canvas.style.cursor = 'grabbing';
-      document.body.style.userSelect = 'none';
+      canvas.style.cursor = "grabbing";
+      document.body.style.userSelect = "none";
     };
     const onMove = (x, y) => {
       if (!draggingRef.current) return;
       const dx = x - lastXRef.current;
       const dy = y - lastYRef.current;
       phiRef.current += dx * speed;
-      thetaRef.current = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, thetaRef.current - dy * speed));
+      thetaRef.current = Math.max(
+        -Math.PI / 2,
+        Math.min(Math.PI / 2, thetaRef.current - dy * speed)
+      );
       lastXRef.current = x;
       lastYRef.current = y;
     };
     const onUp = () => {
       draggingRef.current = false;
-      canvas.style.cursor = 'grab';
-      document.body.style.userSelect = '';
+      canvas.style.cursor = "grab";
+      document.body.style.userSelect = "";
     };
 
     // mouse
@@ -125,29 +131,29 @@ const Globe = ({
     };
     const touchend = () => onUp();
 
-    canvas.addEventListener('mousedown', mousedown);
-    window.addEventListener('mousemove', mousemove);
-    window.addEventListener('mouseup', mouseup);
+    canvas.addEventListener("mousedown", mousedown);
+    window.addEventListener("mousemove", mousemove);
+    window.addEventListener("mouseup", mouseup);
 
-    canvas.addEventListener('touchstart', touchstart, { passive: true });
-    window.addEventListener('touchmove', touchmove, { passive: true });
-    window.addEventListener('touchend', touchend);
+    canvas.addEventListener("touchstart", touchstart, { passive: true });
+    window.addEventListener("touchmove", touchmove, { passive: true });
+    window.addEventListener("touchend", touchend);
 
     const onResize = () => setSize();
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
 
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
 
-      canvas.removeEventListener('mousedown', mousedown);
-      window.removeEventListener('mousemove', mousemove);
-      window.removeEventListener('mouseup', mouseup);
+      canvas.removeEventListener("mousedown", mousedown);
+      window.removeEventListener("mousemove", mousemove);
+      window.removeEventListener("mouseup", mouseup);
 
-      canvas.removeEventListener('touchstart', touchstart);
-      window.removeEventListener('touchmove', touchmove);
-      window.removeEventListener('touchend', touchend);
+      canvas.removeEventListener("touchstart", touchstart);
+      window.removeEventListener("touchmove", touchmove);
+      window.removeEventListener("touchend", touchend);
 
-      document.body.style.userSelect = '';
+      document.body.style.userSelect = "";
       if (globeRef.current) globeRef.current.destroy();
     };
   }, [
@@ -164,16 +170,21 @@ const Globe = ({
   ]);
 
   return (
-    <div className={cn('flex items-center justify-center z-10 w-full max-w-[350px] mx-auto', className)}>
+    <div
+      className={cn(
+        "flex items-center justify-center z-10 w-full max-w-[350px] mx-auto",
+        className
+      )}
+    >
       <canvas
         ref={canvasRef}
         style={{
-          width: '100%',
-          height: '100%',
-          maxWidth: '100%',
-          aspectRatio: '1',
-          cursor: 'grab',
-          touchAction: 'none',
+          width: "100%",
+          height: "100%",
+          maxWidth: "100%",
+          aspectRatio: "1",
+          cursor: "grab",
+          touchAction: "none",
         }}
       />
     </div>

@@ -10,10 +10,8 @@ import Aurora from "./components/reactbits/backgrounds/Aurora";
 export default function Home() {
   return (
     <div className="relative">
-
       {/* HEADER */}
       <section id="home" className="relative min-h-screen overflow-hidden bg-black/60">
-
         {/* Aurora only inside header */}
         <div className="absolute inset-0 -z-10">
           <Aurora
@@ -29,7 +27,6 @@ export default function Home() {
 
       {/* REST OF SITE */}
       <div>
-
         <section id="about" className="py-16 bg-muted/50">
           <About />
         </section>
@@ -49,7 +46,6 @@ export default function Home() {
         <section id="contact" className="py-16 bg-muted/50">
           <Contact />
         </section>
-
       </div>
     </div>
   );

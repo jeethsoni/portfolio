@@ -41,8 +41,7 @@ export default function Blog() {
     <section className="py-8">
       <div className="mb-8 text-center font-serif">
         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-white/90">
-          My {" "}
-          <AuroraText>Blog</AuroraText>
+          My <AuroraText>Blog</AuroraText>
         </h2>
         <p className="mt-3 text-sm text-white/70 max-w-xl mx-auto">
           Sharing my thoughts on life, building products, and campus experiences.
@@ -50,11 +49,11 @@ export default function Blog() {
       </div>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-white/5 bg-[#0f0b1f] shadow-[0_8px_30px_rgba(0,0,0,0.25)]  p-6 sm:p-8">
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-              <Pill icon={NotebookPen} label="Life essays" />
-              <Pill icon={Hammer} label="Builder’s diary" />
-              <Pill icon={GraduationCap} label="Campus stories" />
-            </div>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+            <Pill icon={NotebookPen} label="Life essays" />
+            <Pill icon={Hammer} label="Builder’s diary" />
+            <Pill icon={GraduationCap} label="Campus stories" />
+          </div>
 
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <SkeletonCard />
@@ -65,7 +64,9 @@ export default function Blog() {
           <figure className="mx-auto mt-8 max-w-2xl rounded-xl border border-white/10 bg-white/[0.04] p-5">
             <div className="mb-2 flex items-center gap-2 text-white/70">
               <Quote className="h-4 w-4" />
-              <figcaption className="text-xs uppercase tracking-wide">Note to self</figcaption>
+              <figcaption className="text-xs uppercase tracking-wide">
+                Note to self
+              </figcaption>
             </div>
             <blockquote className="text-sm sm:text-base text-white/80">
               Build small, share early, improve in public.

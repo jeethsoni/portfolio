@@ -110,8 +110,8 @@ export default function Contact() {
             Let&apos;s Build <AuroraText>Something</AuroraText>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-white/70 md:text-base">
-            Got a project, idea, or opportunity in mind? Reach out through the
-            form or connect with me directly.
+            Got a project, idea, or opportunity in mind? Reach out through the form or
+            connect with me directly.
           </p>
         </div>
 
@@ -178,8 +178,9 @@ export default function Contact() {
 
               {toast && (
                 <p
-                  className={`text-sm ${status === "error" ? "text-red-400" : "text-emerald-400"
-                    }`}
+                  className={`text-sm ${
+                    status === "error" ? "text-red-400" : "text-emerald-400"
+                  }`}
                 >
                   {toast}
                 </p>

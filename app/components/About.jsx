@@ -53,14 +53,12 @@ function ContactCard() {
     <div className="flex flex-col items-center justify-center text-center h-full">
       <div className="flex justify-center items-center gap-2 mb-4">
         <LuHeartHandshake size={26} className="text-gray-400" />
-        <h3 className="text-xl md:text-2xl font-bold text-brand">
-          Let’s Work Together
-        </h3>
+        <h3 className="text-xl md:text-2xl font-bold text-brand">Let’s Work Together</h3>
       </div>
 
       <p className="text-sm text-white/80 mb-6 max-w-xs">
-        Interested in collaborating on a project or building something cool?
-        Feel free to reach out.
+        Interested in collaborating on a project or building something cool? Feel free to
+        reach out.
       </p>
 
       <button
@@ -103,7 +101,6 @@ function TechStackTabs() {
       { icon: <Css3Original size={24} />, label: "CSS" },
       { icon: <C size={24} />, label: "C" },
       { icon: <AzuresqldatabaseOriginal size={24} />, label: "SQL" },
-
     ],
 
     frameworks: [
@@ -132,8 +129,6 @@ function TechStackTabs() {
       { icon: <PytestOriginal size={24} />, label: "Pytest" },
       { icon: <Zod size={24} />, label: "Zod" },
       { icon: <ArduinoOriginal size={24} />, label: "Arduino" },
-
-
     ],
   };
 
@@ -156,10 +151,11 @@ function TechStackTabs() {
           <button
             key={tab.id}
             onClick={() => setActive(tab.id)}
-            className={`px-3 py-1 text-xs rounded-full border transition ${active === tab.id
-              ? "bg-emerald-500 text-white border-emerald-400"
-              : "border-white/20 text-white/70 hover:bg-white/10"
-              }`}
+            className={`px-3 py-1 text-xs rounded-full border transition ${
+              active === tab.id
+                ? "bg-emerald-500 text-white border-emerald-400"
+                : "border-white/20 text-white/70 hover:bg-white/10"
+            }`}
           >
             {tab.label}
           </button>
@@ -188,7 +184,9 @@ export default function About() {
       <div className="absolute inset-0 -z-10" />
 
       <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
-        <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-6 lg:auto-rows-[19rem]">         {/* CARD 1 */}
+        <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-6 lg:auto-rows-[19rem]">
+          {" "}
+          {/* CARD 1 */}
           <SpotlightCard
             className="
               group relative flex size-full flex-col justify-between overflow-hidden rounded-xl
@@ -198,14 +196,13 @@ export default function About() {
             "
           >
             <div>
-
               <h3 className="text-xl sm:text-2xl text-brand font-bold text-center mb-2">
                 Who Am I?
               </h3>
 
               <p className="text-white/80 text-sm sm:text-base leading-relaxed max-w-2xl">
-                I enjoy building software that is practical, scalable, and easy to use.
-                My favorite work lives at the intersection of clean backend systems,
+                I enjoy building software that is practical, scalable, and easy to use. My
+                favorite work lives at the intersection of clean backend systems,
                 thoughtful product design, and solving real-world problems.
               </p>
 
@@ -225,7 +222,6 @@ export default function About() {
               </div>
             </div>
           </SpotlightCard>
-
           {/* CARD 2 */}
           <SpotlightCard
             className="
@@ -237,7 +233,6 @@ export default function About() {
           >
             <TechStackTabs />
           </SpotlightCard>
-
           {/* CARD 3 */}
           <SpotlightCard
             className="
@@ -264,7 +259,11 @@ export default function About() {
                 slides={[
                   { src: "/acadia.png", caption: "Exploring National Parks 🏞️" },
                   { src: "/tennis.png", caption: "Tennis Rallies 🎾" },
-                  { src: "/guitar.png", caption: "Strumming guitar 🎸", objectPos: "center 40%" },
+                  {
+                    src: "/guitar.png",
+                    caption: "Strumming guitar 🎸",
+                    objectPos: "center 40%",
+                  },
                   { src: "/ball.png", caption: "Basketball runs 🏀" },
                   { src: "/gym.png", caption: "Getting Big 💪", objectPos: "center 1%" },
                   { src: "/annapolis.png", caption: "Hiking 🚶‍♂️" },
@@ -278,7 +277,6 @@ export default function About() {
               </p>
             </div>
           </SpotlightCard>
-
           {/* CARD 4 */}
           <SpotlightCard
             className="
@@ -289,9 +287,7 @@ export default function About() {
           "
           >
             <ContactCard />
-
           </SpotlightCard>
-
           {/* CARD 5 */}
           <SpotlightCard
             className="
@@ -313,9 +309,7 @@ export default function About() {
                 <p className="text-base md:text-lg font-semibold text-white">
                   Stay tuned
                 </p>
-                <p className="text-sm text-white/60">
-                  A new app is in the works
-                </p>
+                <p className="text-sm text-white/60">A new app is in the works</p>
               </div>
             </div>
 

@@ -7,16 +7,14 @@ export default function Footer() {
   return (
     <footer className="mt-24 border-t border-white/5 bg-black/60 text-white">
       <div className="mx-auto max-w-7xl px-6 py-14">
-
         {/* Top Grid */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
-
           {/* About */}
           <div>
             <h3 className="text-lg font-semibold">Jeet Soni</h3>
             <p className="mt-3 text-sm text-white/60 leading-relaxed">
-              Software developer focused on building scalable backend systems,
-              developer tools, and modern web applications.
+              Software developer focused on building scalable backend systems, developer
+              tools, and modern web applications.
             </p>
           </div>
 
@@ -61,7 +59,6 @@ export default function Footer() {
             <h3 className="text-lg font-semibold">Connect</h3>
 
             <div className="mt-4 flex gap-3">
-
               <SocialIcon href="https://github.com/jeethsoni">
                 <Github size={18} />
               </SocialIcon>
@@ -77,7 +74,6 @@ export default function Footer() {
               <SocialIcon href="tel:+1234567890">
                 <Phone size={18} />
               </SocialIcon>
-
             </div>
           </div>
 
@@ -86,22 +82,19 @@ export default function Footer() {
             <h3 className="text-lg font-semibold">Work With Me</h3>
 
             <p className="mt-4 text-sm text-white/70 leading-relaxed">
-              Open to contract roles, freelance projects, and collaborations
-              involving backend systems, APIs, and developer tools.
+              Open to contract roles, freelance projects, and collaborations involving
+              backend systems, APIs, and developer tools.
             </p>
           </div>
-
         </div>
 
         {/* Divider */}
         <div className="mt-12 border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50">
-
           <p>© {new Date().getFullYear()} Jeet Soni. All rights reserved.</p>
 
           <p>
             Built with <span className="text-purple-400">❤</span> using Next.js & Tailwind
           </p>
-
         </div>
       </div>
 

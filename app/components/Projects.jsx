@@ -167,11 +167,7 @@ function Card({ item, onOpen }) {
                 .map((tech) => {
                   const Icon = item.iconMap[tech];
                   return (
-                    <TechCircle
-                      key={`${item.id}-${tech}`}
-                      title={tech}
-                      Icon={Icon}
-                    />
+                    <TechCircle key={`${item.id}-${tech}`} title={tech} Icon={Icon} />
                   );
                 })}
             </div>
@@ -212,7 +208,8 @@ function Modal({ open, onClose, project }) {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm pt-20 p-3"    >
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm pt-20 p-3"
+    >
       <div className="relative w-full max-w-3xl rounded-2xl border border-white/5 bg-[#0f0b1f] shadow-[0_8px_30px_rgba(0,0,0,0.25)] flex flex-col max-h-[90vh]">
         <div className="relative border-b border-white/10 bg-white/5 p-5">
           <button
@@ -294,9 +291,7 @@ export default function Projects({ items = FEATURED_PROJECTS }) {
         <h2 className="text-5xl font-bold text-white/90">
           Featured <AuroraText>Projects</AuroraText>
         </h2>
-        <p className="mt-1 text-md text-gray-300">
-          Check out some of my recent work.
-        </p>
+        <p className="mt-1 text-md text-gray-300">Check out some of my recent work.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
