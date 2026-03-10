@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className="relative min-h-screen overflow-hidden">
       {/* Navbar */}
-      <div className="absolute top-0 inset-x-0 z-[100]">
+      <div className="absolute top-0 inset-x-0 z-100">
         <Navbar />
       </div>
 
@@ -20,14 +20,14 @@ export default function Header() {
         <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20 xl:gap-28">
           {/* IMAGE - first on mobile, second on desktop */}
           <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
-            <div className="relative aspect-square w-56 sm:w-64 md:w-72 lg:w-[420px] xl:w-[500px]">
+            <div className="relative aspect-square w-105 overflow-hidden rounded-full">
               <Image
-                src="/profile_pic.png"
+                src="/profile.JPG"
                 alt="profile picture"
                 fill
                 priority
                 sizes="(max-width: 640px) 14rem, (max-width: 768px) 16rem, (max-width: 1024px) 18rem, (max-width: 1280px) 340px, 380px"
-                className="rounded-full object-cover"
+                className="rounded-full object-cover object-[50%_60%]"
               />
             </div>
           </div>
