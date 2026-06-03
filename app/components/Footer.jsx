@@ -67,11 +67,11 @@ export default function Footer() {
                 <Linkedin size={18} />
               </SocialIcon>
 
-              <SocialIcon href="mailto:it.jsoni22@gmail.com">
+              <SocialIcon href="mailto:jeetsoni.dev@gmail.com">
                 <Mail size={18} />
               </SocialIcon>
 
-              <SocialIcon href="tel:+1234567890">
+              <SocialIcon href="tel:+17328961023">
                 <Phone size={18} />
               </SocialIcon>
             </div>

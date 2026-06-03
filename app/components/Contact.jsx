@@ -178,9 +178,8 @@ export default function Contact() {
 
               {toast && (
                 <p
-                  className={`text-sm ${
-                    status === "error" ? "text-red-400" : "text-emerald-400"
-                  }`}
+                  className={`text-sm ${status === "error" ? "text-red-400" : "text-emerald-400"
+                    }`}
                 >
                   {toast}
                 </p>
@@ -218,8 +217,8 @@ export default function Contact() {
               <ContactInfoCard
                 icon={Mail}
                 title="Email"
-                value="it.jsoni22@gmail.com"
-                href="mailto:it.jsoni22@gmail.com"
+                value="jeetsoni.dev@gmail.com"
+                href="mailto:jeetsoni.dev@gmail.com"
               />
 
               <ContactInfoCard
